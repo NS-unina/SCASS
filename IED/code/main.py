@@ -1,7 +1,6 @@
 """General IED module"""
 import argparse
 
-
 CB_STATUS = 0
 CB_INDEX = "0"
 
