@@ -4,6 +4,7 @@ from pymodbus.datastore import (ModbusSequentialDataBlock, ModbusSlaveContext,
                                 ModbusServerContext)
 from pymodbus.server import StartAsyncTcpServer  # pylint: disable-msg=E0611
 
+
 datablock = ModbusSequentialDataBlock(0x00, [0] * 100)
 context = ModbusSlaveContext(
             di=datablock,
