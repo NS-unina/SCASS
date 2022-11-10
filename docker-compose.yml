@@ -49,6 +49,15 @@ services:
       grid:
         ipv4_address: 10.0.0.10
 
+  test-node:
+    container_name: Test-Node
+    build:
+      context: ./TestNode
+    command: "tail -f /dev/null"
+    networks:
+      grid:
+        ipv4_address: 10.0.0.100
+
 networks:
   grid:
     driver: bridge
