@@ -1,0 +1,1757 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "SmartHome",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "f9239fb34b30886f",
+        "type": "tab",
+        "label": "Trasmission",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e8fadf6e099691f1",
+        "type": "tab",
+        "label": "MicroGrid",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "68489fdfe7b1817d",
+        "type": "tab",
+        "label": "Generation",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "dc5db5fec6567f19",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "deabfc98ab5a2757",
+        "type": "ui_tab",
+        "name": "GeneralPLC",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "70930bef4dc9bcbb",
+        "type": "ui_group",
+        "name": "Smart Home",
+        "tab": "deabfc98ab5a2757",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "713c2cdbe4ca33cd",
+        "type": "ui_group",
+        "name": "Trasmission",
+        "tab": "deabfc98ab5a2757",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "885cb78831934e14",
+        "type": "ui_group",
+        "name": "MicroGrid",
+        "tab": "deabfc98ab5a2757",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c84f30a3693dc7cd",
+        "type": "ui_group",
+        "name": "Generation",
+        "tab": "deabfc98ab5a2757",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "0d8a1e886305c096",
+        "type": "modbus-client",
+        "name": "SmartHome-PLC",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "10.0.0.21",
+        "tcpPort": "502",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": "1",
+        "commandDelay": "1",
+        "clientTimeout": "1000",
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": "2000",
+        "parallelUnitIdsAllowed": true
+    },
+    {
+        "id": "2cef5a67ad04430e",
+        "type": "modbus-client",
+        "name": "Trasmission-PLC",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "10.0.0.22",
+        "tcpPort": "502",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": "1",
+        "commandDelay": "1",
+        "clientTimeout": "1000",
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": "2000",
+        "parallelUnitIdsAllowed": true
+    },
+    {
+        "id": "be611cc56542c238",
+        "type": "modbus-client",
+        "name": "MicroGrid-PLC",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "10.0.0.23",
+        "tcpPort": "502",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": "1",
+        "commandDelay": "1",
+        "clientTimeout": "1000",
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": "2000",
+        "parallelUnitIdsAllowed": true
+    },
+    {
+        "id": "df3225f48528285f",
+        "type": "modbus-client",
+        "name": "Generation-PLC",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "10.0.0.24",
+        "tcpPort": "502",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": "1",
+        "commandDelay": "1",
+        "clientTimeout": "1000",
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": "2000",
+        "parallelUnitIdsAllowed": true
+    },
+    {
+        "id": "33ffccafdc0295c0",
+        "type": "ui_switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "label": "CB9",
+        "tooltip": "",
+        "group": "70930bef4dc9bcbb",
+        "order": 1,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 610,
+        "y": 560,
+        "wires": [
+            [
+                "a55207c35c835b44"
+            ]
+        ]
+    },
+    {
+        "id": "d5dbd236b674673f",
+        "type": "ui_switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "label": "CB10",
+        "tooltip": "",
+        "group": "70930bef4dc9bcbb",
+        "order": 3,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "cb10",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 610,
+        "y": 660,
+        "wires": [
+            [
+                "e33e894b98160608"
+            ]
+        ]
+    },
+    {
+        "id": "ee70f97094e95bad",
+        "type": "ui_switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "label": "CB11",
+        "tooltip": "",
+        "group": "70930bef4dc9bcbb",
+        "order": 5,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "cb11",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 610,
+        "y": 780,
+        "wires": [
+            [
+                "488969f2d38bc066"
+            ]
+        ]
+    },
+    {
+        "id": "1bb33962e7eba5ce",
+        "type": "ui_switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "label": "CB12",
+        "tooltip": "",
+        "group": "70930bef4dc9bcbb",
+        "order": 7,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "cb12",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 610,
+        "y": 880,
+        "wires": [
+            [
+                "7cfc42e2399ca443"
+            ]
+        ]
+    },
+    {
+        "id": "aa35e5da4043837f",
+        "type": "ui_led",
+        "z": "f6f2187d.f17ca8",
+        "order": 2,
+        "group": "70930bef4dc9bcbb",
+        "width": 3,
+        "height": 1,
+        "label": "Status CB9",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Status CB9",
+        "x": 910,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "5f9b5f219ccf3ebd",
+        "type": "ui_led",
+        "z": "f6f2187d.f17ca8",
+        "order": 4,
+        "group": "70930bef4dc9bcbb",
+        "width": 3,
+        "height": 1,
+        "label": "Status CB10",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Status CB10",
+        "x": 910,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "2e113389290de56f",
+        "type": "ui_led",
+        "z": "f6f2187d.f17ca8",
+        "order": 6,
+        "group": "70930bef4dc9bcbb",
+        "width": 3,
+        "height": 1,
+        "label": "Status CB11",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Status CB11",
+        "x": 910,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "ac66da853057ef76",
+        "type": "ui_led",
+        "z": "f6f2187d.f17ca8",
+        "order": 8,
+        "group": "70930bef4dc9bcbb",
+        "width": 3,
+        "height": 1,
+        "label": "Status CB12",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Status CB12",
+        "x": 910,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "bc4d4798bda52460",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "InitialState",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 350,
+        "y": 720,
+        "wires": [
+            [
+                "33ffccafdc0295c0",
+                "d5dbd236b674673f",
+                "ee70f97094e95bad",
+                "1bb33962e7eba5ce"
+            ]
+        ]
+    },
+    {
+        "id": "a55207c35c835b44",
+        "type": "modbus-write",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "showStatusActivities": false,
+        "showErrors": true,
+        "unitid": "",
+        "dataType": "Coil",
+        "adr": "0x00",
+        "quantity": "1",
+        "server": "0d8a1e886305c096",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 900,
+        "y": 560,
+        "wires": [
+            [
+                "a66f08f350ab7cbc"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a66f08f350ab7cbc",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1120,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "e33e894b98160608",
+        "type": "modbus-write",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "showStatusActivities": false,
+        "showErrors": true,
+        "unitid": "",
+        "dataType": "Coil",
+        "adr": "0x01",
+        "quantity": "1",
+        "server": "0d8a1e886305c096",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 900,
+        "y": 660,
+        "wires": [
+            [
+                "94fed45790796552"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "488969f2d38bc066",
+        "type": "modbus-write",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "showStatusActivities": false,
+        "showErrors": true,
+        "unitid": "",
+        "dataType": "Coil",
+        "adr": "0x02",
+        "quantity": "1",
+        "server": "0d8a1e886305c096",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 900,
+        "y": 780,
+        "wires": [
+            [
+                "5d8b25bf29088bbe"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "7cfc42e2399ca443",
+        "type": "modbus-write",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "showStatusActivities": false,
+        "showErrors": true,
+        "unitid": "",
+        "dataType": "Coil",
+        "adr": "0x03",
+        "quantity": "1",
+        "server": "0d8a1e886305c096",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 900,
+        "y": 880,
+        "wires": [
+            [
+                "61f9304d5b2d0258"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "94fed45790796552",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1120,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "5d8b25bf29088bbe",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1120,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "61f9304d5b2d0258",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1120,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "174b66832a818fd7",
+        "type": "modbus-read",
+        "z": "f6f2187d.f17ca8",
+        "name": "Modbus Read CB Status",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": true,
+        "unitid": "",
+        "dataType": "Coil",
+        "adr": "0x04",
+        "quantity": "4",
+        "rate": "1",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "0d8a1e886305c096",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 330,
+        "y": 240,
+        "wires": [
+            [
+                "611a44dbd16e9599",
+                "633e148e0344b8f1",
+                "042f9ec3f5b6b112",
+                "80dcb81d55350739"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "611a44dbd16e9599",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "extract CB9",
+        "func": "var newMsg = { payload: msg.payload[0]};\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 60,
+        "wires": [
+            [
+                "aa35e5da4043837f"
+            ]
+        ]
+    },
+    {
+        "id": "042f9ec3f5b6b112",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "extract C11",
+        "func": "var newMsg = { payload: msg.payload[2]};\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 300,
+        "wires": [
+            [
+                "2e113389290de56f"
+            ]
+        ]
+    },
+    {
+        "id": "633e148e0344b8f1",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "extract CB10",
+        "func": "var newMsg = { payload: msg.payload[1]};\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 140,
+        "wires": [
+            [
+                "5f9b5f219ccf3ebd"
+            ]
+        ]
+    },
+    {
+        "id": "80dcb81d55350739",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "extract CB12",
+        "func": "var newMsg = { payload: msg.payload[3]};\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 380,
+        "wires": [
+            [
+                "ac66da853057ef76"
+            ]
+        ]
+    },
+    {
+        "id": "a1dace6f6142b2a8",
+        "type": "ui_switch",
+        "z": "f9239fb34b30886f",
+        "name": "",
+        "label": "CB3",
+        "tooltip": "",
+        "group": "713c2cdbe4ca33cd",
+        "order": 1,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 530,
+        "y": 440,
+        "wires": [
+            [
+                "0de4f9418a4fcd30"
+            ]
+        ]
+    },
+    {
+        "id": "9745075d8ba518dc",
+        "type": "ui_switch",
+        "z": "f9239fb34b30886f",
+        "name": "",
+        "label": "CB7",
+        "tooltip": "",
+        "group": "713c2cdbe4ca33cd",
+        "order": 3,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 530,
+        "y": 540,
+        "wires": [
+            [
+                "65ef318aa5504c68"
+            ]
+        ]
+    },
+    {
+        "id": "d65a9111261b770b",
+        "type": "ui_switch",
+        "z": "f9239fb34b30886f",
+        "name": "",
+        "label": "CB8",
+        "tooltip": "",
+        "group": "713c2cdbe4ca33cd",
+        "order": 5,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 530,
+        "y": 640,
+        "wires": [
+            [
+                "4bb566fa12f2f8a1"
+            ]
+        ]
+    },
+    {
+        "id": "a6ce4ac49d1d033b",
+        "type": "ui_led",
+        "z": "f9239fb34b30886f",
+        "order": 2,
+        "group": "713c2cdbe4ca33cd",
+        "width": 3,
+        "height": 1,
+        "label": "Status CB3",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Status CB3",
+        "x": 770,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "de36100c87f0e1c9",
+        "type": "ui_led",
+        "z": "f9239fb34b30886f",
+        "order": 4,
+        "group": "713c2cdbe4ca33cd",
+        "width": 3,
+        "height": 1,
+        "label": "Status CB7",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Status CB7",
+        "x": 770,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "937acd566b6b71d3",
+        "type": "ui_led",
+        "z": "f9239fb34b30886f",
+        "order": 6,
+        "group": "713c2cdbe4ca33cd",
+        "width": 3,
+        "height": 1,
+        "label": "Status CB8",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Status CB8",
+        "x": 770,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "8b2878d224a77efa",
+        "type": "function",
+        "z": "f9239fb34b30886f",
+        "name": "extract CB9",
+        "func": "var newMsg = { payload: msg.payload[0]};\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 100,
+        "wires": [
+            [
+                "a6ce4ac49d1d033b"
+            ]
+        ]
+    },
+    {
+        "id": "bf72d17b74f6d301",
+        "type": "function",
+        "z": "f9239fb34b30886f",
+        "name": "extract C11",
+        "func": "var newMsg = { payload: msg.payload[2]};\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 260,
+        "wires": [
+            [
+                "937acd566b6b71d3"
+            ]
+        ]
+    },
+    {
+        "id": "77695c7781a4e2ef",
+        "type": "function",
+        "z": "f9239fb34b30886f",
+        "name": "extract CB10",
+        "func": "var newMsg = { payload: msg.payload[1]};\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 180,
+        "wires": [
+            [
+                "de36100c87f0e1c9"
+            ]
+        ]
+    },
+    {
+        "id": "42bd4330b39a2945",
+        "type": "modbus-read",
+        "z": "f9239fb34b30886f",
+        "name": "Modbus Read CB Status",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": true,
+        "unitid": "",
+        "dataType": "Coil",
+        "adr": "0x04",
+        "quantity": "3",
+        "rate": "1",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "2cef5a67ad04430e",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 250,
+        "y": 180,
+        "wires": [
+            [
+                "8b2878d224a77efa",
+                "77695c7781a4e2ef",
+                "bf72d17b74f6d301"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "e9f2e3398e118b93",
+        "type": "inject",
+        "z": "f9239fb34b30886f",
+        "name": "InitialState",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 230,
+        "y": 540,
+        "wires": [
+            [
+                "a1dace6f6142b2a8",
+                "9745075d8ba518dc",
+                "d65a9111261b770b"
+            ]
+        ]
+    },
+    {
+        "id": "0de4f9418a4fcd30",
+        "type": "modbus-write",
+        "z": "f9239fb34b30886f",
+        "name": "",
+        "showStatusActivities": false,
+        "showErrors": true,
+        "unitid": "",
+        "dataType": "Coil",
+        "adr": "0x00",
+        "quantity": "1",
+        "server": "2cef5a67ad04430e",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 760,
+        "y": 440,
+        "wires": [
+            [
+                "09f6fceb420be11f"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "65ef318aa5504c68",
+        "type": "modbus-write",
+        "z": "f9239fb34b30886f",
+        "name": "",
+        "showStatusActivities": false,
+        "showErrors": true,
+        "unitid": "",
+        "dataType": "Coil",
+        "adr": "0x01",
+        "quantity": "1",
+        "server": "2cef5a67ad04430e",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 760,
+        "y": 540,
+        "wires": [
+            [
+                "c4b7a7b63b6351dd"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "4bb566fa12f2f8a1",
+        "type": "modbus-write",
+        "z": "f9239fb34b30886f",
+        "name": "",
+        "showStatusActivities": false,
+        "showErrors": true,
+        "unitid": "",
+        "dataType": "Coil",
+        "adr": "0x02",
+        "quantity": "1",
+        "server": "2cef5a67ad04430e",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 760,
+        "y": 640,
+        "wires": [
+            [
+                "e5eb31e9c84ad5ac"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "09f6fceb420be11f",
+        "type": "debug",
+        "z": "f9239fb34b30886f",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "c4b7a7b63b6351dd",
+        "type": "debug",
+        "z": "f9239fb34b30886f",
+        "name": "debug 9",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "e5eb31e9c84ad5ac",
+        "type": "debug",
+        "z": "f9239fb34b30886f",
+        "name": "debug 10",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "111259c6680a4fae",
+        "type": "ui_switch",
+        "z": "e8fadf6e099691f1",
+        "name": "",
+        "label": "CB4",
+        "tooltip": "",
+        "group": "885cb78831934e14",
+        "order": 1,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 450,
+        "y": 620,
+        "wires": [
+            [
+                "429eb77f55c9c5e0"
+            ]
+        ]
+    },
+    {
+        "id": "d87b1d6eeec0d5f2",
+        "type": "ui_switch",
+        "z": "e8fadf6e099691f1",
+        "name": "",
+        "label": "CB5",
+        "tooltip": "",
+        "group": "885cb78831934e14",
+        "order": 3,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 450,
+        "y": 720,
+        "wires": [
+            [
+                "3a400b346e7f8573"
+            ]
+        ]
+    },
+    {
+        "id": "55d33926c3606914",
+        "type": "ui_led",
+        "z": "e8fadf6e099691f1",
+        "order": 2,
+        "group": "885cb78831934e14",
+        "width": 3,
+        "height": 1,
+        "label": "Status CB4",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Status CB4",
+        "x": 710,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "1fd5584e1f67a876",
+        "type": "ui_led",
+        "z": "e8fadf6e099691f1",
+        "order": 4,
+        "group": "885cb78831934e14",
+        "width": 3,
+        "height": 1,
+        "label": "Status CB5",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Status CB5",
+        "x": 710,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "03217b1ca828c4cc",
+        "type": "function",
+        "z": "e8fadf6e099691f1",
+        "name": "extract CB9",
+        "func": "var newMsg = { payload: msg.payload[0]};\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 300,
+        "wires": [
+            [
+                "55d33926c3606914"
+            ]
+        ]
+    },
+    {
+        "id": "232c19cd7275d0c6",
+        "type": "function",
+        "z": "e8fadf6e099691f1",
+        "name": "extract CB10",
+        "func": "var newMsg = { payload: msg.payload[1]};\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 380,
+        "wires": [
+            [
+                "1fd5584e1f67a876"
+            ]
+        ]
+    },
+    {
+        "id": "b657cfcdeba9bce1",
+        "type": "modbus-read",
+        "z": "e8fadf6e099691f1",
+        "name": "Modbus Read CB Status",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": true,
+        "unitid": "",
+        "dataType": "Coil",
+        "adr": "0x03",
+        "quantity": "2",
+        "rate": "1",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "be611cc56542c238",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 210,
+        "y": 340,
+        "wires": [
+            [
+                "03217b1ca828c4cc",
+                "232c19cd7275d0c6"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "16b3af36f0cbac6d",
+        "type": "inject",
+        "z": "e8fadf6e099691f1",
+        "name": "InitialState",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 230,
+        "y": 660,
+        "wires": [
+            [
+                "111259c6680a4fae",
+                "d87b1d6eeec0d5f2"
+            ]
+        ]
+    },
+    {
+        "id": "429eb77f55c9c5e0",
+        "type": "modbus-write",
+        "z": "e8fadf6e099691f1",
+        "name": "",
+        "showStatusActivities": false,
+        "showErrors": true,
+        "unitid": "",
+        "dataType": "Coil",
+        "adr": "0x00",
+        "quantity": "1",
+        "server": "be611cc56542c238",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 660,
+        "y": 620,
+        "wires": [
+            [
+                "13488b1022da8168"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "3a400b346e7f8573",
+        "type": "modbus-write",
+        "z": "e8fadf6e099691f1",
+        "name": "",
+        "showStatusActivities": false,
+        "showErrors": true,
+        "unitid": "",
+        "dataType": "Coil",
+        "adr": "0x01",
+        "quantity": "1",
+        "server": "be611cc56542c238",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 660,
+        "y": 720,
+        "wires": [
+            [
+                "8e1120dcb606bc77"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "13488b1022da8168",
+        "type": "debug",
+        "z": "e8fadf6e099691f1",
+        "name": "debug 11",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "8e1120dcb606bc77",
+        "type": "debug",
+        "z": "e8fadf6e099691f1",
+        "name": "debug 12",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "21d4940f68251d70",
+        "type": "ui_switch",
+        "z": "68489fdfe7b1817d",
+        "name": "",
+        "label": "CB0",
+        "tooltip": "",
+        "group": "c84f30a3693dc7cd",
+        "order": 1,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 390,
+        "y": 380,
+        "wires": [
+            [
+                "dc29658fe14cc587"
+            ]
+        ]
+    },
+    {
+        "id": "ae531af1331a6d03",
+        "type": "ui_led",
+        "z": "68489fdfe7b1817d",
+        "order": 2,
+        "group": "c84f30a3693dc7cd",
+        "width": 3,
+        "height": 1,
+        "label": "Status CB0",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Status CB0",
+        "x": 770,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "f46ca62eaf18af31",
+        "type": "function",
+        "z": "68489fdfe7b1817d",
+        "name": "extract CB9",
+        "func": "var newMsg = { payload: msg.payload[0]};\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 200,
+        "wires": [
+            [
+                "ae531af1331a6d03"
+            ]
+        ]
+    },
+    {
+        "id": "25c33ddbc3bbfd59",
+        "type": "modbus-read",
+        "z": "68489fdfe7b1817d",
+        "name": "Modbus Read CB Status",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": true,
+        "unitid": "",
+        "dataType": "Coil",
+        "adr": "0x01",
+        "quantity": "1",
+        "rate": "1",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "df3225f48528285f",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 290,
+        "y": 200,
+        "wires": [
+            [
+                "f46ca62eaf18af31"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "dc29658fe14cc587",
+        "type": "modbus-write",
+        "z": "68489fdfe7b1817d",
+        "name": "",
+        "showStatusActivities": false,
+        "showErrors": true,
+        "unitid": "",
+        "dataType": "Coil",
+        "adr": "0x00",
+        "quantity": "1",
+        "server": "df3225f48528285f",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 600,
+        "y": 380,
+        "wires": [
+            [
+                "81ec3419cfe90d11"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "078e87fc9ace99f2",
+        "type": "inject",
+        "z": "68489fdfe7b1817d",
+        "name": "InitialState",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 170,
+        "y": 420,
+        "wires": [
+            [
+                "21d4940f68251d70"
+            ]
+        ]
+    },
+    {
+        "id": "81ec3419cfe90d11",
+        "type": "debug",
+        "z": "68489fdfe7b1817d",
+        "name": "debug 13",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 340,
+        "wires": []
+    }
+]

@@ -1,0 +1,57 @@
+services: 
+  sh-plc:
+    container_name: SmartHome-PLC
+    build:
+      context: ./IED
+    ports:
+      - 502:502
+    networks:
+      grid:
+        ipv4_address: 10.0.0.21
+
+  t-plc:
+    container_name: Trasmission-PLC
+    build:
+      context: ./IED
+    ports:
+      - 503:502
+    networks:
+      grid:
+        ipv4_address: 10.0.0.22
+    
+  m-plc:
+    container_name: MicroGrid-PLC
+    build:
+      context: ./IED
+    ports:
+      - 504:502
+    networks:
+      grid:
+        ipv4_address: 10.0.0.23
+  
+  g-plc:
+    container_name: Generation-PLC
+    build:
+      context: ./IED
+    ports:
+      - 505:502
+    networks:
+      grid:
+        ipv4_address: 10.0.0.24
+
+  general-plc:
+    container_name: General-PLC
+    build:
+      context: ./GeneralPLC
+    ports:
+      - 1880:1880
+    networks:
+      grid:
+        ipv4_address: 10.0.0.10
+
+networks:
+  grid:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.0.0.0/24

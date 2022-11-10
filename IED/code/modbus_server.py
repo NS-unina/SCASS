@@ -3,7 +3,7 @@ import asyncio
 import logging
 from pymodbus.datastore import (ModbusSequentialDataBlock, ModbusSlaveContext,
                                 ModbusServerContext)
-from pymodbus.server import StartAsyncTcpServer, StartTcpServer  # pylint: disable-msg=E0611
+from pymodbus.server import StartAsyncTcpServer  # pylint: disable-msg=E0611
 
 _logger = logging.getLogger()
 datablock = ModbusSequentialDataBlock(0x00, [0] * 100)
@@ -23,16 +23,6 @@ async def run_async_server():
         context=store,  # Data storage
         address=("", 502),  # Listen address
     )
-    return server
-
-
-def run_sync_server():
-    """Run server"""
-    server = StartTcpServer(
-        context=store,  # Data storage
-        address=("0.0.0.0", 502),  # Listen address
-    )
-    # print(context.getValues(1, 0x00, 10))
     return server
 
 
