@@ -107,13 +107,36 @@ services:
         ipv4_address: 10.0.0.32
 
   t-ied3:
-    container_name: T-ied3
+    container_name: T-IED3
     build:
       context: ./IED
     networks:
       grid:
         ipv4_address: 10.0.0.33
-    
+
+  g-ied1:
+    container_name: G-IED1
+    build:
+      context: ./IED_AMI
+    networks:
+      grid:
+        ipv4_address: 10.0.0.51
+
+  m-ied1:
+    container_name: M-IED1
+    build:
+      context: ./IED_AMI
+    networks:
+      grid:
+        ipv4_address: 10.0.0.61
+
+  m-ied2:
+    container_name: M-IED2
+    build:
+      context: ./IED_AMI
+    networks:
+      grid:
+        ipv4_address: 10.0.0.62
 
     
 networks:
