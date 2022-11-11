@@ -58,6 +58,38 @@ services:
       grid:
         ipv4_address: 10.0.0.100
 
+  s-ied1:
+    container_name: S-IED1
+    build:
+      context: ./IED
+    networks:
+      grid:
+        ipv4_address: 10.0.0.41
+  
+  s-ied2:
+    container_name: S-IED2
+    build:
+      context: ./IED
+    networks:
+      grid:
+        ipv4_address: 10.0.0.42
+
+  s-ied3:
+    container_name: S-IED3
+    build:
+      context: ./IED
+    networks:
+      grid:
+        ipv4_address: 10.0.0.43
+
+  s-ied4:
+    container_name: S-IED4
+    build:
+      context: ./IED
+    networks:
+      grid:
+        ipv4_address: 10.0.0.44
+  
 networks:
   grid:
     driver: bridge
