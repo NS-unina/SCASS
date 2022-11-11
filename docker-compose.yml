@@ -90,6 +90,32 @@ services:
       grid:
         ipv4_address: 10.0.0.44
   
+  t-ied1:
+    container_name: T-IED1
+    build:
+      context: ./IED
+    networks:
+      grid:
+        ipv4_address: 10.0.0.31
+    
+  t-ied2:
+    container_name: T-IED2
+    build:
+      context: ./IED
+    networks:
+      grid:
+        ipv4_address: 10.0.0.32
+
+  t-ied3:
+    container_name: T-ied3
+    build:
+      context: ./IED
+    networks:
+      grid:
+        ipv4_address: 10.0.0.33
+    
+
+    
 networks:
   grid:
     driver: bridge
