@@ -27,7 +27,7 @@ services:
       - 504:502
     networks:
       grid:
-        ipv4_address: 10.0.0.23
+        ipv4_address: 10.0.0.24
   
   g-plc:
     container_name: Generation-PLC
@@ -37,7 +37,7 @@ services:
       - 505:502
     networks:
       grid:
-        ipv4_address: 10.0.0.24
+        ipv4_address: 10.0.0.23
 
   general-plc:
     container_name: General-PLC
@@ -138,7 +138,6 @@ services:
       grid:
         ipv4_address: 10.0.0.62
 
-    
 networks:
   grid:
     driver: bridge

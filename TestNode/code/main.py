@@ -6,16 +6,16 @@ from pymodbus.client import ModbusTcpClient  # pylint: disable-msg=E0611
 def cb_write_test(cb_index, value):
     """test cd"""
     if cb_index == 0:
-        client = ModbusTcpClient('10.0.0.24', 502)
+        client = ModbusTcpClient('10.0.0.23', 502)
         client.write_coil(1, value)
     elif cb_index == 3:
         client = ModbusTcpClient('10.0.0.22', 502)
         client.write_coil(3, value)
     elif cb_index == 4:
-        client = ModbusTcpClient('10.0.0.23', 502)
+        client = ModbusTcpClient('10.0.0.24', 502)
         client.write_coil(3, value)
     elif cb_index == 5:
-        client = ModbusTcpClient('10.0.0.23', 502)
+        client = ModbusTcpClient('10.0.0.24', 502)
         client.write_coil(2, value)
     elif cb_index == 7:
         client = ModbusTcpClient('10.0.0.22', 502)
@@ -42,7 +42,7 @@ def cb_write_test(cb_index, value):
 def cb_read_test(cb_index):
     """read test"""
     if cb_index == 0:
-        client = ModbusTcpClient('10.0.0.24', 502)
+        client = ModbusTcpClient('10.0.0.23', 502)
         result = client.read_coils(0, 1)
         print("Generation PLC")
         print("CB00: " + str(result.bits[0]))
@@ -54,7 +54,7 @@ def cb_read_test(cb_index):
         print("CB07: " + str(result.bits[1]))
         print("CB08: " + str(result.bits[2]))
     elif cb_index in (4, 5):
-        client = ModbusTcpClient('10.0.0.23', 502)
+        client = ModbusTcpClient('10.0.0.24', 502)
         result = client.read_coils(0, 2)
         print("Micro Grid PLC")
         print("CB04: " + str(result.bits[0]))
