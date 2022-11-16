@@ -1,4 +1,7 @@
 test*
+!test_generic_ied.py
+!test_general_plc.py
+
 # Created by https://www.toptal.com/developers/gitignore/api/python,visualstudiocode,visualstudio,linux,windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,visualstudiocode,visualstudio,linux,windows
 
