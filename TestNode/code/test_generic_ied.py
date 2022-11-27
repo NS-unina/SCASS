@@ -6,14 +6,14 @@ from pymodbus.client import ModbusTcpClient  # pylint: disable-msg=E0611
 def cb_write_test(ip_add, value):
     """test cd"""
     client = ModbusTcpClient(ip_add, 502)
-    client.write_coil(1, value)
+    client.write_coil(0, value)
     client.close()
 
 
 def cb_read_test(ip_add):
     """read test"""
     client = ModbusTcpClient(ip_add, 502)
-    result = client.read_coils(0, 1)
+    result = client.read_coils(1, 1)
     print("Result: " + str(result.bits[0]))
     client.close()
 
