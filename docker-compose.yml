@@ -68,3 +68,15 @@ services:
       context: ./IED
     ports:
       - "10.0.0.62:502:502"
+
+networks:
+  dockervlan:
+    name: scass
+    driver: macvlan
+    driver_opts:
+      parent: ens33
+    ipam:
+      config:
+        - subnet: "10.0.0.0/24"
+          ip_range: "10.0.0.0/24"
+          gateway: "10.0.0.1"
