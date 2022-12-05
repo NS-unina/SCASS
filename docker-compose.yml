@@ -3,80 +3,96 @@ services:
     container_name: S-IED1
     build:
       context: ./IED
-    ports:
-      - "10.0.0.41:502:502"
+    networks:
+      scass:
+        ipv4_address: "10.0.0.34"
   
   s-ied2:
     container_name: S-IED2
     build:
       context: ./IED
-    ports:
-      - "10.0.0.42:502:502"
+    networks:
+      scass:
+        ipv4_address: "10.0.0.35"
 
   s-ied3:
     container_name: S-IED3
     build:
       context: ./IED
-    ports:
-      - "10.0.0.43:502:502"
+    networks:
+      scass:
+        ipv4_address: "10.0.0.36"
 
   s-ied4:
     container_name: S-IED4
     build:
       context: ./IED
-    ports:
-      - "10.0.0.44:502:502"
+    networks:
+      scass:
+        ipv4_address: "10.0.0.37"
   
   t-ied1:
     container_name: T-IED1
     build:
       context: ./IED
-    ports:
-      - "10.0.0.31:502:502"
+    networks:
+      scass:
+        ipv4_address: "10.0.0.50"
     
   t-ied2:
     container_name: T-IED2
     build:
       context: ./IED
-    ports:
-      - "10.0.0.32:502:502"
+    networks:
+      scass:
+        ipv4_address: "10.0.0.51"
 
   t-ied3:
     container_name: T-IED3
     build:
       context: ./IED
-    ports:
-      - "10.0.0.33:502:502"
+    networks:
+      scass:
+        ipv4_address: "10.0.0.52"
 
   g-ied1:
     container_name: G-IED1
     build:
       context: ./IED
-    ports:
-      - "10.0.0.51:502:502"
+    networks:
+      scass:
+        ipv4_address: "10.0.0.2"
 
   m-ied1:
     container_name: M-IED1
     build:
       context: ./IED
-    ports:
-      - "10.0.0.61:502:502"
+    networks:
+      scass:
+        ipv4_address: "10.0.0.18"
 
   m-ied2:
     container_name: M-IED2
     build:
       context: ./IED
-    ports:
-      - "10.0.0.62:502:502"
+    networks:
+      scass:
+        ipv4_address: "10.0.0.19"
+
+  general-plc:
+    container_name: General-PLC
+    build:
+      context: ./GeneralPLC
+    networks:
+      scass:
+        ipv4_address: "10.0.0.65"
 
 networks:
-  dockervlan:
+  scass:
     name: scass
     driver: macvlan
     driver_opts:
-      parent: ens33
+      parent: eth0
     ipam:
       config:
         - subnet: "10.0.0.0/24"
-          ip_range: "10.0.0.0/24"
-          gateway: "10.0.0.1"
