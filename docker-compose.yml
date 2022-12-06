@@ -87,6 +87,21 @@ services:
       scass-scada:
         ipv4_address: "10.0.0.65"
 
+  openWRT:
+    container_name: openWRT
+    image: openwrtorg/rootfs
+    networks:
+      scass-scada:
+        ipv4_address: "10.0.0.64"
+      scass-microgrid:
+        ipv4_address: "10.0.0.17"
+      scass-generation:
+        ipv4_address: "10.0.0.1"
+      scass-trasmission:
+        ipv4_address: "10.0.0.51"
+      scass-smarthome:
+        ipv4_address: "10.0.0.34"
+
 networks:
   scass-generation:
     name: scass-generation
