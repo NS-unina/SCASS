@@ -4,7 +4,7 @@ services:
     build:
       context: ./IED
     networks:
-      scass:
+      scass-smarthome:
         ipv4_address: "10.0.0.34"
   
   s-ied2:
@@ -12,7 +12,7 @@ services:
     build:
       context: ./IED
     networks:
-      scass:
+      scass-smarthome:
         ipv4_address: "10.0.0.35"
 
   s-ied3:
@@ -20,7 +20,7 @@ services:
     build:
       context: ./IED
     networks:
-      scass:
+      scass-smarthome:
         ipv4_address: "10.0.0.36"
 
   s-ied4:
@@ -28,7 +28,7 @@ services:
     build:
       context: ./IED
     networks:
-      scass:
+      scass-smarthome:
         ipv4_address: "10.0.0.37"
   
   t-ied1:
@@ -36,7 +36,7 @@ services:
     build:
       context: ./IED
     networks:
-      scass:
+      scass-trasmission:
         ipv4_address: "10.0.0.50"
     
   t-ied2:
@@ -44,7 +44,7 @@ services:
     build:
       context: ./IED
     networks:
-      scass:
+      scass-trasmission:
         ipv4_address: "10.0.0.51"
 
   t-ied3:
@@ -52,7 +52,7 @@ services:
     build:
       context: ./IED
     networks:
-      scass:
+      scass-trasmission:
         ipv4_address: "10.0.0.52"
 
   g-ied1:
@@ -60,7 +60,7 @@ services:
     build:
       context: ./IED
     networks:
-      scass:
+      scass-generation:
         ipv4_address: "10.0.0.2"
 
   m-ied1:
@@ -68,7 +68,7 @@ services:
     build:
       context: ./IED
     networks:
-      scass:
+      scass-microgrid:
         ipv4_address: "10.0.0.18"
 
   m-ied2:
@@ -76,7 +76,7 @@ services:
     build:
       context: ./IED
     networks:
-      scass:
+      scass-microgrid:
         ipv4_address: "10.0.0.19"
 
   general-plc:
@@ -84,15 +84,56 @@ services:
     build:
       context: ./GeneralPLC
     networks:
-      scass:
+      scass-scada:
         ipv4_address: "10.0.0.65"
 
 networks:
-  scass:
-    name: scass
+  scass-generation:
+    name: scass-generation
     driver: macvlan
     driver_opts:
-      parent: eth0
+      parent: eth0.1
     ipam:
       config:
-        - subnet: "10.0.0.0/24"
+        - subnet: "10.0.0.0/28"
+        - gateway: "10.0.0.1"
+  
+  scass-microgrid:
+    name: scass-generation
+    driver: macvlan
+    driver_opts:
+      parent: eth0.2
+    ipam:
+      config:
+        - subnet: "10.0.0.16/28"
+        - gateway: "10.0.0.17"
+  
+  scass-smarthome:
+    name: scass-smarthome
+    driver: macvlan
+    driver_opts:
+      parent: eth0.3
+    ipam:
+      config:
+        - subnet: "10.0.0.32/28"
+        - gateway: "10.0.0.33"
+
+  scass-trasmission:
+    name: scass-trasmission
+    driver: macvlan
+    driver_opts:
+      parent: eth0.4
+    ipam:
+      config:
+        - subnet: "10.0.0.48/28"
+        - gateway: "10.0.0.49"
+  
+  scass-scada:
+    name: scass-scada
+    driver: macvlan
+    driver_opts:
+      parent: eth0.5
+    ipam:
+      config:
+        - subnet: "10.0.0.64/29"
+        - gateway: "10.0.0.65"
