@@ -1,4 +1,12 @@
 services: 
+  g-ied1:
+    container_name: G-IED1
+    build:
+      context: ./IED
+    networks:
+      scass-generation:
+        ipv4_address: "10.0.0.82"
+
   s-ied1:
     container_name: S-IED1
     build:
@@ -55,13 +63,7 @@ services:
       scass-trasmission:
         ipv4_address: "10.0.0.52"
 
-  g-ied1:
-    container_name: G-IED1
-    build:
-      context: ./IED
-    networks:
-      scass-generation:
-        ipv4_address: "10.0.0.2"
+
 
   m-ied1:
     container_name: M-IED1
@@ -85,43 +87,19 @@ services:
       context: ./GeneralPLC
     networks:
       scass-scada:
-        ipv4_address: "10.0.0.65"
-
-  openWRT:
-    container_name: openWRT
-    image: openwrtorg/rootfs
-    networks:
-      scass-scada:
-        ipv4_address: "10.0.0.64"
-      scass-microgrid:
-        ipv4_address: "10.0.0.17"
-      scass-generation:
-        ipv4_address: "10.0.0.1"
-      scass-trasmission:
-        ipv4_address: "10.0.0.51"
-      scass-smarthome:
-        ipv4_address: "10.0.0.34"
-
+        ipv4_address: "10.0.0.66"
+        
 networks:
-  scass-generation:
-    name: scass-generation
-    driver: macvlan
-    driver_opts:
-      parent: eth0.1
-    ipam:
-      config:
-        - subnet: "10.0.0.0/28"
-        - gateway: "10.0.0.1"
-  
+
   scass-microgrid:
-    name: scass-generation
+    name: scass-microgrid
     driver: macvlan
     driver_opts:
       parent: eth0.2
     ipam:
       config:
         - subnet: "10.0.0.16/28"
-        - gateway: "10.0.0.17"
+        #  gateway: "10.0.0.17"
   
   scass-smarthome:
     name: scass-smarthome
@@ -131,7 +109,7 @@ networks:
     ipam:
       config:
         - subnet: "10.0.0.32/28"
-        - gateway: "10.0.0.33"
+        #  gateway: "10.0.0.33"
 
   scass-trasmission:
     name: scass-trasmission
@@ -141,7 +119,7 @@ networks:
     ipam:
       config:
         - subnet: "10.0.0.48/28"
-        - gateway: "10.0.0.49"
+        #  gateway: "10.0.0.49"
   
   scass-scada:
     name: scass-scada
@@ -150,5 +128,17 @@ networks:
       parent: eth0.5
     ipam:
       config:
-        - subnet: "10.0.0.64/29"
-        - gateway: "10.0.0.65"
+        - subnet: "10.0.0.64/28"
+        #  gateway: "10.0.0.65"
+          
+  scass-generation:
+    name: scass-generation
+    driver: macvlan
+    driver_opts:
+      parent: eth0.1
+    ipam:
+      config:
+        - subnet: "10.0.0.80/28"
+        #  gateway: "10.0.0.81"
+  
+
