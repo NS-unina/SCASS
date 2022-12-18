@@ -135,7 +135,7 @@ networks:
     name: scass-generation
     driver: macvlan
     driver_opts:
-      parent: eth0.1
+      parent: eth0.6
     ipam:
       config:
         - subnet: "192.168.72.80/28"
