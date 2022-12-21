@@ -63,8 +63,6 @@ services:
       scass-trasmission:
         ipv4_address: "192.168.72.52"
 
-
-
   m-ied1:
     container_name: M-IED1
     build:
@@ -92,6 +90,7 @@ services:
   internal-gateway:
     container_name: I-Gateway
     image: "ubuntu:22.04"
+    privileged: true
     networks:
       scass-microgrid:
         ipv4_address: "192.168.72.30"
@@ -103,6 +102,7 @@ services:
         ipv4_address: "192.168.72.78"
       scass-generation:
         ipv4_address: "192.168.72.94"
+    command: "tail -f /dev/null"
         
 networks:
   scass-microgrid:
@@ -113,7 +113,7 @@ networks:
     ipam:
       config:
         - subnet: "192.168.72.16/28"
-          gateway: "192.168.72.30"
+        #  gateway: "192.168.72.30"
   
   scass-smarthome:
     name: scass-smarthome
@@ -123,7 +123,7 @@ networks:
     ipam:
       config:
         - subnet: "192.168.72.32/28"
-          gateway: "192.168.72.46"
+        #  gateway: "192.168.72.46"
 
   scass-trasmission:
     name: scass-trasmission
@@ -133,7 +133,7 @@ networks:
     ipam:
       config:
         - subnet: "192.168.72.48/28"
-          gateway: "192.168.72.62"
+        #  gateway: "192.168.72.62"
   
   scass-scada:
     name: scass-scada
@@ -143,7 +143,7 @@ networks:
     ipam:
       config:
         - subnet: "192.168.72.64/28"
-          gateway: "192.168.72.78"
+        #  gateway: "192.168.72.78"
           
   scass-generation:
     name: scass-generation
@@ -153,4 +153,4 @@ networks:
     ipam:
       config:
         - subnet: "192.168.72.80/28"
-          gateway: "192.168.72.94"
+        #  gateway: "192.168.72.94"
