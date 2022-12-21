@@ -155,7 +155,8 @@ services:
 
   internal-gateway:
     container_name: I-Gateway
-    image: "ubuntu:22.04"
+    build:
+      context: ./internalGateway
     cap_add:
       - NET_ADMIN
     networks:
