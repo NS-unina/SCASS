@@ -1,6 +1,6 @@
 FROM nodered/node-red:3.0.2
 
-COPY ./data/ /usr/src/node-red/
+COPY ./data/flows.json /usr/src/node-red/
 
 WORKDIR /usr/src/node-red/
 

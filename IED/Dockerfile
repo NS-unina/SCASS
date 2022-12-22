@@ -6,4 +6,4 @@ RUN apt update && apt install -y iproute2 iptables
 
 WORKDIR /root
 RUN pip install -r requirements.txt
-RUN ./run_script.sh
+CMD ./run_script.sh

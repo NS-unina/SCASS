@@ -11,7 +11,7 @@ services:
     command: >-
       sh -c "ip route del default &&
       ip route add default via 192.168.72.94 &&
-      tail -f /dev/null"
+      ./run_script.sh"
 
   s-ied1:
     container_name: S-IED1
@@ -25,7 +25,7 @@ services:
     command: >-
       sh -c "ip route del default &&
       ip route add default via 192.168.72.46 &&
-      tail -f /dev/null"
+      ./run_script.sh"
   
   s-ied2:
     container_name: S-IED2
@@ -39,7 +39,7 @@ services:
     command: >-
       sh -c "ip route del default &&
       ip route add default via 192.168.72.46 &&
-      tail -f /dev/null"
+      ./run_script.sh"
 
   s-ied3:
     container_name: S-IED3
@@ -53,7 +53,7 @@ services:
     command: >-
       sh -c "ip route del default &&
       ip route add default via 192.168.72.46 &&
-      tail -f /dev/null"
+      ./run_script.sh"
 
   s-ied4:
     container_name: S-IED4
@@ -67,7 +67,7 @@ services:
     command: >-
       sh -c "ip route del default &&
       ip route add default via 192.168.72.46 &&
-      tail -f /dev/null"
+      ./run_script.sh"
   
   t-ied1:
     container_name: T-IED1
@@ -81,7 +81,7 @@ services:
     command: >-
       sh -c "ip route del default &&
       ip route add default via 192.168.72.62 &&
-      tail -f /dev/null"
+      ./run_script.sh"
     
   t-ied2:
     container_name: T-IED2
@@ -95,7 +95,7 @@ services:
     command: >-
       sh -c "ip route del default &&
       ip route add default via 192.168.72.62 &&
-      tail -f /dev/null"
+      ./run_script.sh"
 
   t-ied3:
     container_name: T-IED3
@@ -123,7 +123,7 @@ services:
     command: >-
       sh -c "ip route del default &&
       ip route add default via 192.168.72.30 &&
-      tail -f /dev/null"
+      ./run_script.sh"
 
   m-ied2:
     container_name: M-IED2
@@ -137,7 +137,7 @@ services:
     command: >-
       sh -c "ip route del default &&
       ip route add default via 192.168.72.30 &&
-      tail -f /dev/null"
+      ./run_script.sh"
 
   general-plc:
     container_name: General-PLC
@@ -151,7 +151,7 @@ services:
     command: >-
       sh -c "ip route del default &&
       ip route add default via 192.168.72.78 &&
-      tail -f /dev/null"
+      ./run_script.sh"
 
   internal-gateway:
     container_name: I-Gateway
