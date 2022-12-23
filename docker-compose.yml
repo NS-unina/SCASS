@@ -148,6 +148,8 @@ services:
     networks:
       scass-scada:
         ipv4_address: "192.168.72.66"
+      scass-management:
+        ipv4_address: "10.0.0.210"
     command: >-
       sh -c "ip route del default &&
       ip route add default via 192.168.72.78 &&
@@ -184,6 +186,15 @@ services:
       tail -f /dev/null"
       
 networks:
+  scass-management:
+    name: scass-management 
+    driver: macvlan
+    driver_opts:
+      parent: eth0.1
+    ipam:
+      config:
+        - subnet: "10.0.0.0/24"
+
   scass-microgrid:
     name: scass-microgrid
     driver: macvlan
