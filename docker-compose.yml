@@ -190,7 +190,7 @@ networks:
     name: scass-management 
     driver: macvlan
     driver_opts:
-      parent: eth0.1
+      parent: eth0
     ipam:
       config:
         - subnet: "10.0.0.0/24"
