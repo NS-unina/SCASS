@@ -153,6 +153,20 @@ services:
       ip route add default via 192.168.72.78 &&
       ./run_script.sh"
 
+  general-man:
+    container_name: General-Man
+    build:
+      context: ./GeneralMan
+    environment:
+      DISPLAY: $DISPLAY
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ~/.Xauthority:/root/.Xauthority
+    networks:
+      scass-scada:
+        ipv4_address: "192.168.72.67"
+    command: "tail -f /dev/null"
+
   internal-gateway:
     container_name: I-Gateway
     build:
@@ -182,7 +196,8 @@ services:
       iptables -A FORWARD -i eth3 -j ACCEPT &&
       iptables -A FORWARD -i eth4 -j ACCEPT &&
       tail -f /dev/null"
-      
+ 
+networks:     
   scass-microgrid:
     name: scass-microgrid
     driver: macvlan
