@@ -1,0 +1,14 @@
+primitive_fact( 2, cvss(cve2022_30697,m)).
+primitive_fact( 3, vulExists(scadaWorkStation,cve2022_30697,winKernel,localExploit,privEscalation)).
+primitive_fact( 6, hacl(enterpriseWorkStation,scadaWorkStation,smbProtocol,smbPort)).
+primitive_fact( 10, hacl(internet,enterpriseWorkStation,rdpProtocol,rdpPort)).
+primitive_fact( 11, attackerLocated(internet)).
+primitive_fact( 13, networkServiceInfo(enterpriseWorkStation,rdpd,rdpProtocol,rdpPort,user)).
+primitive_fact( 14, hasAccount(scadaOperator,enterpriseWorkStation,user)).
+primitive_fact( 16, inCompetent(scadaOperator)).
+primitive_fact( 18, hacl(enterpriseWorkStation,internet,httpProtocol,httpPort)).
+primitive_fact( 19, cvss(cve2022_26485,h)).
+primitive_fact( 20, vulExists(enterpriseWorkStation,cve2022_26485,firefoxBrowser,remoteClient,privEscalation)).
+primitive_fact( 21, networkServiceInfo(scadaWorkStation,smbServer,smbProtocol,smbPort,user)).
+primitive_fact( 22, cvss(cve2017_0144,h)).
+primitive_fact( 23, vulExists(scadaWorkStation,cve2017_0144,smbServer,remoteExploit,privEscalation)).

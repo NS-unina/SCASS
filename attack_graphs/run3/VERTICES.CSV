@@ -1,0 +1,33 @@
+1,"execCode(scadaWorkStation,root)","OR",0
+2,"RULE 1 (local exploit)","AND",0.6
+3,"cvss(cve2022_30697,m)","LEAF",1
+4,"vulExists(scadaWorkStation,cve2022_30697,winKernel,localExploit,privEscalation)","LEAF",1
+5,"execCode(scadaWorkStation,user)","OR",0
+6,"RULE 2 (remote exploit of a server program)","AND",0.2
+7,"netAccess(scadaWorkStation,smbProtocol,smbPort)","OR",0
+8,"RULE 5 (multi-hop access)","AND",1
+9,"hacl(enterpriseWorkStation,scadaWorkStation,smbProtocol,smbPort)","LEAF",1
+10,"execCode(enterpriseWorkStation,user)","OR",0
+11,"RULE 0 (Reuse of credentials)","AND",0.8
+12,"canAccessHost(enterpriseWorkStation)","OR",0
+13,"RULE 9 (Access a host through a log-in service)","AND",1
+14,"netAccess(enterpriseWorkStation,rdpProtocol,rdpPort)","OR",0
+15,"RULE 6 (direct network access)","AND",1
+16,"hacl(internet,enterpriseWorkStation,rdpProtocol,rdpPort)","LEAF",1
+17,"attackerLocated(internet)","LEAF",1
+18,"logInService(enterpriseWorkStation,rdpProtocol,rdpPort)","OR",0
+19,"RULE 15 (RDP is a login service)","AND",1
+20,"networkServiceInfo(enterpriseWorkStation,rdpd,rdpProtocol,rdpPort,user)","LEAF",1
+21,"hasAccount(scadaOperator,enterpriseWorkStation,user)","LEAF",1
+22,"principalCompromised(scadaOperator)","OR",0
+23,"RULE 12 (target incompetent user)","AND",0.5
+24,"inCompetent(scadaOperator)","LEAF",1
+25,"RULE 3 (remote exploit of a client program)","AND",0.2
+26,"accessMaliciousInput(enterpriseWorkStation,scadaOperator,firefoxBrowser)","OR",0
+27,"RULE 22 (Browsing a malicious website)","AND",0.8
+28,"hacl(enterpriseWorkStation,internet,httpProtocol,httpPort)","LEAF",1
+29,"cvss(cve2022_26485,h)","LEAF",1
+30,"vulExists(enterpriseWorkStation,cve2022_26485,firefoxBrowser,remoteClient,privEscalation)","LEAF",1
+31,"networkServiceInfo(scadaWorkStation,smbServer,smbProtocol,smbPort,user)","LEAF",1
+32,"cvss(cve2017_0144,h)","LEAF",1
+33,"vulExists(scadaWorkStation,cve2017_0144,smbServer,remoteExploit,privEscalation)","LEAF",1

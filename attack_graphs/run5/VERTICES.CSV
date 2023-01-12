@@ -1,0 +1,138 @@
+1,"canTamper(controlAction20)","OR",0
+2,"RULE 0 (Controller compromised)","AND",1
+3,"controlsFlow(sPLC,controlAction20)","LEAF",1
+4,"execCode(sPLC,root)","OR",0
+5,"RULE 4 (remote exploit of a server program)","AND",0.2
+6,"netAccess(sPLC,_,_)","OR",0
+7,"RULE 7 (multi-hop access)","AND",1
+8,"hacl(genPLC,sPLC,_,_)","LEAF",1
+9,"execCode(genPLC,root)","OR",0
+10,"RULE 4 (remote exploit of a server program)","AND",0.2
+11,"netAccess(genPLC,_,_)","OR",0
+12,"RULE 7 (multi-hop access)","AND",1
+13,"hacl(mainPLC,genPLC,_,_)","LEAF",1
+14,"execCode(mainPLC,user)","OR",0
+15,"RULE 4 (remote exploit of a server program)","AND",0.2
+16,"netAccess(mainPLC,_,_)","OR",0
+17,"RULE 7 (multi-hop access)","AND",1
+18,"hacl(genPLC,mainPLC,_,_)","LEAF",1
+19,"RULE 7 (multi-hop access)","AND",1
+20,"execCode(genPLC,user)","OR",0
+21,"RULE 4 (remote exploit of a server program)","AND",0.2
+22,"networkServiceInfo(genPLC,dropbearssh,_,_,user)","LEAF",1
+23,"cvss(cve2016_7406,h)","LEAF",1
+24,"vulExists(genPLC,cve2016_7406,dropbearssh,remoteExploit,privEscalation)","LEAF",1
+25,"RULE 4 (remote exploit of a server program)","AND",0.2
+26,"cvss(cve2016_7407,h)","LEAF",1
+27,"vulExists(genPLC,cve2016_7407,dropbearssh,remoteExploit,privEscalation)","LEAF",1
+28,"RULE 4 (remote exploit of a server program)","AND",0.2
+29,"cvss(cve2016_7408,h)","LEAF",1
+30,"vulExists(genPLC,cve2016_7408,dropbearssh,remoteExploit,privEscalation)","LEAF",1
+31,"RULE 7 (multi-hop access)","AND",1
+32,"hacl(mgPLC,mainPLC,_,_)","LEAF",1
+33,"execCode(mgPLC,root)","OR",0
+34,"RULE 4 (remote exploit of a server program)","AND",0.2
+35,"netAccess(mgPLC,_,_)","OR",0
+36,"RULE 7 (multi-hop access)","AND",1
+37,"hacl(genPLC,mgPLC,_,_)","LEAF",1
+38,"RULE 7 (multi-hop access)","AND",1
+39,"RULE 7 (multi-hop access)","AND",1
+40,"hacl(mainPLC,mgPLC,_,_)","LEAF",1
+41,"RULE 7 (multi-hop access)","AND",1
+42,"hacl(scadaWorkStation,mgPLC,_,_)","LEAF",1
+43,"execCode(scadaWorkStation,user)","OR",0
+44,"RULE 2 (Reuse of credentials)","AND",0.8
+45,"canAccessHost(scadaWorkStation)","OR",0
+46,"RULE 11 (Access a host through a log-in service)","AND",1
+47,"netAccess(scadaWorkStation,rdpProtocol,rdpPort)","OR",0
+48,"RULE 8 (direct network access)","AND",1
+49,"hacl(intranet,scadaWorkStation,rdpProtocol,rdpPort)","LEAF",1
+50,"attackerLocated(intranet)","LEAF",1
+51,"logInService(scadaWorkStation,rdpProtocol,rdpPort)","OR",0
+52,"RULE 17 (RDP is a login service)","AND",1
+53,"networkServiceInfo(scadaWorkStation,rdpd,rdpProtocol,rdpPort,user)","LEAF",1
+54,"hasAccount(scadaOperator,scadaWorkStation,user)","LEAF",1
+55,"principalCompromised(scadaOperator)","OR",0
+56,"RULE 14 (target incompetent user)","AND",0.5
+57,"inCompetent(scadaOperator)","LEAF",1
+58,"RULE 4 (remote exploit of a server program)","AND",0.2
+59,"netAccess(scadaWorkStation,smbProtocol,smbPort)","OR",0
+60,"RULE 8 (direct network access)","AND",1
+61,"hacl(intranet,scadaWorkStation,smbProtocol,smbPort)","LEAF",1
+62,"networkServiceInfo(scadaWorkStation,smbServer,smbProtocol,smbPort,user)","LEAF",1
+63,"cvss(cve2017_0144,h)","LEAF",1
+64,"vulExists(scadaWorkStation,cve2017_0144,smbServer,remoteExploit,privEscalation)","LEAF",1
+65,"RULE 7 (multi-hop access)","AND",1
+66,"hacl(tPLC,mgPLC,_,_)","LEAF",1
+67,"execCode(tPLC,root)","OR",0
+68,"RULE 4 (remote exploit of a server program)","AND",0.2
+69,"netAccess(tPLC,_,_)","OR",0
+70,"RULE 7 (multi-hop access)","AND",1
+71,"hacl(genPLC,tPLC,_,_)","LEAF",1
+72,"RULE 7 (multi-hop access)","AND",1
+73,"RULE 7 (multi-hop access)","AND",1
+74,"hacl(mainPLC,tPLC,_,_)","LEAF",1
+75,"RULE 7 (multi-hop access)","AND",1
+76,"hacl(mgPLC,tPLC,_,_)","LEAF",1
+77,"RULE 7 (multi-hop access)","AND",1
+78,"execCode(mgPLC,user)","OR",0
+79,"RULE 4 (remote exploit of a server program)","AND",0.2
+80,"networkServiceInfo(mgPLC,dropbearssh,_,_,user)","LEAF",1
+81,"cvss(cve2012_6068,h)","LEAF",1
+82,"vulExists(mgPLC,cve2012_6068,dropbearssh,remoteExploit,privEscalation)","LEAF",1
+83,"RULE 4 (remote exploit of a server program)","AND",0.2
+84,"vulExists(mgPLC,cve2016_7406,dropbearssh,remoteExploit,privEscalation)","LEAF",1
+85,"RULE 4 (remote exploit of a server program)","AND",0.2
+86,"vulExists(mgPLC,cve2016_7407,dropbearssh,remoteExploit,privEscalation)","LEAF",1
+87,"RULE 4 (remote exploit of a server program)","AND",0.2
+88,"vulExists(mgPLC,cve2016_7408,dropbearssh,remoteExploit,privEscalation)","LEAF",1
+89,"RULE 7 (multi-hop access)","AND",1
+90,"hacl(scadaWorkStation,tPLC,_,_)","LEAF",1
+91,"networkServiceInfo(tPLC,codesys,_,_,root)","LEAF",1
+92,"vulExists(tPLC,cve2012_6068,codesys,remoteExploit,privEscalation)","LEAF",1
+93,"RULE 7 (multi-hop access)","AND",1
+94,"execCode(tPLC,user)","OR",0
+95,"RULE 4 (remote exploit of a server program)","AND",0.2
+96,"networkServiceInfo(tPLC,dropbearssh,_,_,user)","LEAF",1
+97,"vulExists(tPLC,cve2016_7406,dropbearssh,remoteExploit,privEscalation)","LEAF",1
+98,"RULE 4 (remote exploit of a server program)","AND",0.2
+99,"vulExists(tPLC,cve2016_7407,dropbearssh,remoteExploit,privEscalation)","LEAF",1
+100,"RULE 4 (remote exploit of a server program)","AND",0.2
+101,"vulExists(tPLC,cve2016_7408,dropbearssh,remoteExploit,privEscalation)","LEAF",1
+102,"networkServiceInfo(mgPLC,codesys,_,_,root)","LEAF",1
+103,"vulExists(mgPLC,cve2012_6068,codesys,remoteExploit,privEscalation)","LEAF",1
+104,"RULE 7 (multi-hop access)","AND",1
+105,"RULE 7 (multi-hop access)","AND",1
+106,"hacl(scadaWorkStation,mainPLC,_,_)","LEAF",1
+107,"RULE 7 (multi-hop access)","AND",1
+108,"hacl(tPLC,mainPLC,_,_)","LEAF",1
+109,"RULE 7 (multi-hop access)","AND",1
+110,"networkServiceInfo(mainPLC,dropbearssh,_,_,user)","LEAF",1
+111,"vulExists(mainPLC,cve2016_7406,dropbearssh,remoteExploit,privEscalation)","LEAF",1
+112,"RULE 4 (remote exploit of a server program)","AND",0.2
+113,"vulExists(mainPLC,cve2016_7407,dropbearssh,remoteExploit,privEscalation)","LEAF",1
+114,"RULE 4 (remote exploit of a server program)","AND",0.2
+115,"vulExists(mainPLC,cve2016_7408,dropbearssh,remoteExploit,privEscalation)","LEAF",1
+116,"RULE 7 (multi-hop access)","AND",1
+117,"hacl(mgPLC,genPLC,_,_)","LEAF",1
+118,"RULE 7 (multi-hop access)","AND",1
+119,"RULE 7 (multi-hop access)","AND",1
+120,"hacl(scadaWorkStation,genPLC,_,_)","LEAF",1
+121,"RULE 7 (multi-hop access)","AND",1
+122,"hacl(tPLC,genPLC,_,_)","LEAF",1
+123,"RULE 7 (multi-hop access)","AND",1
+124,"networkServiceInfo(genPLC,codesys,_,_,root)","LEAF",1
+125,"vulExists(genPLC,cve2012_6068,codesys,remoteExploit,privEscalation)","LEAF",1
+126,"RULE 7 (multi-hop access)","AND",1
+127,"RULE 7 (multi-hop access)","AND",1
+128,"hacl(mainPLC,sPLC,_,_)","LEAF",1
+129,"RULE 7 (multi-hop access)","AND",1
+130,"hacl(mgPLC,sPLC,_,_)","LEAF",1
+131,"RULE 7 (multi-hop access)","AND",1
+132,"RULE 7 (multi-hop access)","AND",1
+133,"hacl(scadaWorkStation,sPLC,_,_)","LEAF",1
+134,"RULE 7 (multi-hop access)","AND",1
+135,"hacl(tPLC,sPLC,_,_)","LEAF",1
+136,"RULE 7 (multi-hop access)","AND",1
+137,"networkServiceInfo(sPLC,codesys,_,_,root)","LEAF",1
+138,"vulExists(sPLC,cve2012_6068,codesys,remoteExploit,privEscalation)","LEAF",1
