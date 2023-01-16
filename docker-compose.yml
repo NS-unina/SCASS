@@ -141,6 +141,7 @@ services:
 
   general-plc:
     container_name: General-PLC
+    user: root
     build:
       context: ./GeneralPLC
     cap_add:
@@ -148,10 +149,6 @@ services:
     networks:
       scass-scada:
         ipv4_address: "192.168.72.66"
-    command: >-
-      sh -c "ip route del default &&
-      ip route add default via 192.168.72.78 &&
-      ./run_script.sh"
 
   general-man:
     container_name: General-Man
