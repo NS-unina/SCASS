@@ -38,12 +38,12 @@ hacl(scadaWorkStation, shPLC, _, _).
 hacl(scadaWorkStation, mgPLC, _, _).
 hacl(scadaWorkStation, trPLC, _, _).
 
-/* Generation network*/
+/* Generation network */
 inSubnet(gIED1, generationNet).
 inSubnet(genPLC, generationNet).
 inSubnet(gRouter, generationNet).
 
-/* SmartHome network*/
+/* SmartHome network */
 inSubnet(sIED1, smartHomeNet).
 inSubnet(sIED2, smartHomeNet).
 inSubnet(sIED3, smartHomeNet).
@@ -51,7 +51,7 @@ inSubnet(sIED4, smartHomeNet).
 inSubnet(shPLC, smartHomeNet).
 inSubnet(shRouter, smartHomeNet).
 
-/* MicroGrid network*/
+/* MicroGrid network */
 inSubnet(mIED1, mgNet).
 inSubnet(mIED2, mgNet).
 inSubnet(mgPLC, mgNet).
@@ -64,19 +64,44 @@ inSubnet(tIED3, mgNet).
 inSubnet(trPLC, mgNet).
 inSubnet(tRouter, mgNet).
 
-/* TO CHECK - router link*/
-/* Generation MicroGrid lan*/
+/* TO CHECK - router link */
+/* Generation MicroGrid lan */
 inSubnet(gRouter, gmNet).
 inSubnet(mgRouter, gmNet).
-/* Generation Trasmission lan*/
+/* Generation Trasmission lan */
 inSubnet(gRouter, gtNet).
 inSubnet(tRouter, gtNet).
-/* Trasmission Scada lan*/
+/* Trasmission Scada lan */
 inSubnet(tRouter, tsNet).
 inSubnet(scadaRouter, tsNet).
-/* SmartHome Scada lan*/
+/* SmartHome Scada lan */
 inSubnet(shRouter, ssNet).
 inSubnet(scadaRouter, ssNet).
-/* SmartHome Microgrid lan*/
+/* SmartHome Microgrid lan */
 inSubnet(shRouter, smNet).
 inSubnet(mgRouter, smNet).
+
+/* Vulnerabilities */
+vulProperty(cve2016_7406,remoteExploit, privEscalation).
+cvss(cve2016_7406,h).
+vulProperty(cve2016_7407,remoteExploit, privEscalation).
+cvss(cve2016_7407,h).
+vulProperty(cve2016_7408,remoteExploit, privEscalation).
+cvss(cve2016_7408,h).
+vulProperty(cve2016_7409,remoteExploit, informationDisclosure).
+cvss(cve2016_7409,l).
+vulProperty(cve2012_6068,remoteExploit, privEscalation).
+cvss(cve2012_6068,h).
+vulProperty(cve2017_0267,remoteExploit, informationDisclosure).
+cvss(cve2017_0267,m).
+vulProperty(cve2017_0268,remoteExploit, informationDisclosure).
+cvss(cve2017_0268,m).
+vulProperty(cve2017_0269,remoteExploit, denialOfService).
+cvss(cve2017_0269,m).
+vulProperty(cve2017_0144,remoteExploit, privEscalation).
+cvss(cve2017_0144,h).
+vulProperty(cve2022_30697, localExploit, privEscalation).
+cvss(cve2022_30697,m).
+vulProperty(cve2022_26485, remoteClient, privEscalation).
+cvss(cve2022_26485,h).
+/* End Vulns */
