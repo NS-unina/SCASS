@@ -37,11 +37,28 @@ hacl(scadaWorkStation, genPLC, _, _).
 hacl(scadaWorkStation, shPLC, _, _).
 hacl(scadaWorkStation, mgPLC, _, _).
 hacl(scadaWorkStation, trPLC, _, _).
+/* ACL missconfiguration */
+/* CWE-693: Protection Mechanism Failure */
+hacl(scadaWorkStation, sIED1, _, _).
+/* Scada Workstation vulnerabilities */
+/* SMB - Eternalblue */
+networkServiceInfo(scadaWorkStation,smbServer,smbProtocol,smbPort,user).
+vulExists(scadaWorkStation,cve2017_0144,smbServer).
+vulExists(scadaWorkStation,cve2017_0267,smbServer).
+vulExists(scadaWorkStation,cve2017_0268,smbServer).
+vulExists(scadaWorkStation,cve2017_0269,smbServer).
+/* RDP - CWE-1391: Use of Weak Credential */
+inCompetent(scadaOperator).
+hasAccount(scadaOperator,scadaWorkStation,user).
+networkServiceInfo(scadaWorkStation,rdpd,rdpProtocol,rdpPort,user).
 
 /* Generation network */
 inSubnet(gIED1, generationNet).
 inSubnet(genPLC, generationNet).
 inSubnet(gRouter, generationNet).
+/* Generation PLC vulnerabilities */
+networkServiceInfo(tPLC,codesys,_,_,root).
+vulExists(tPLC,cve2012_6068,codesys).
 
 /* SmartHome network */
 inSubnet(sIED1, smartHomeNet).
@@ -50,6 +67,13 @@ inSubnet(sIED3, smartHomeNet).
 inSubnet(sIED4, smartHomeNet).
 inSubnet(shPLC, smartHomeNet).
 inSubnet(shRouter, smartHomeNet).
+/* S-IED1 vulnerabilities */
+/* Dropbear SSH */
+networkServiceInfo(tPLC,dropbearssh,_,_,user).
+vulExists(tPLC,cve2016_7406,dropbearssh).
+vulExists(tPLC,cve2016_7407,dropbearssh).
+vulExists(tPLC,cve2016_7408,dropbearssh).
+vulExists(tPLC,cve2016_7409,dropbearssh).
 
 /* MicroGrid network */
 inSubnet(mIED1, mgNet).
