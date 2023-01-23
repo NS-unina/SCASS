@@ -16,7 +16,7 @@ hacl(X,Y,_,_):-
 
 /* Control Logic */
 /* Unsafe configuration of breakers */
-controlsFlow(sPLC, controlAction12).
+controlsFlow(shPLC, controlAction12).
 transportsFlow(shRouter, controlAction12).
 /* CB-7 is open while the power is supplied through P3 */
 controlsFlow(scadaWorkStation, controlAction4).
