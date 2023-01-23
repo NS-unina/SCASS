@@ -9,7 +9,7 @@ attackGoal(canSpoof(controlAction2)).
 /* Attacker Location */
 attackerLocated(intranet).
 
-/* Enable comunication between host in the same subnet*/
+/* Enable communication between host in the same subnet */
 hacl(X,Y,_,_):-
 	inSubnet(X,S),
 	inSubnet(Y,S).
@@ -30,16 +30,19 @@ inSubnet(scadaWorkStation, scadaNet).
 inSubnet(historian, scadaNet).
 inSubnet(engineeringWorkStation, scadaNet).
 inSubnet(scadaRouter, scadaNet).
-/* Enable comunication between scadaWorkStation and the attacker */
+
+/* Enable communication between scadaWorkStation and all PLC */
 hacl(scadaWorkStation, intranet, _, _).
-/* Scada hacl rules*/
+hacl(intranet, scadaWorkStation, _, _).
 hacl(scadaWorkStation, genPLC, _, _).
-hacl(scadaWorkStation, shPLC, _, _).
-hacl(scadaWorkStation, mgPLC, _, _).
+hacl(genPLC, scadaWorkStation, _, _).
 hacl(scadaWorkStation, trPLC, _, _).
-/* ACL missconfiguration */
-/* CWE-693: Protection Mechanism Failure */
-hacl(scadaWorkStation, sIED1, _, _).
+hacl(trPLC, scadaWorkStation, _, _).
+hacl(scadaWorkStation, mgPLC, _, _).
+hacl(mgPLC, scadaWorkStation, _, _).
+hacl(scadaWorkStation, shPLC, _, _).
+hacl(shPLC, scadaWorkStation, _, _).
+
 /* Scada Workstation vulnerabilities */
 /* SMB - Eternalblue */
 networkServiceInfo(scadaWorkStation,smbServer,smbProtocol,smbPort,user).
@@ -57,8 +60,15 @@ inSubnet(gIED1, generationNet).
 inSubnet(genPLC, generationNet).
 inSubnet(gRouter, generationNet).
 /* Generation PLC vulnerabilities */
-networkServiceInfo(tPLC,codesys,_,_,root).
-vulExists(tPLC,cve2012_6068,codesys).
+/* CodeSYS RCE */
+networkServiceInfo(genPLC,codesys,_,_,root).
+vulExists(genPLC,cve2012_6068,codesys).
+/* SSH RCE */
+networkServiceInfo(genPLC,dropbearssh,_,_,user).
+vulExists(genPLC,cve2016_7406,dropbearssh).
+vulExists(genPLC,cve2016_7407,dropbearssh).
+vulExists(genPLC,cve2016_7408,dropbearssh).
+vulExists(genPLC,cve2016_7409,dropbearssh).
 
 /* SmartHome network */
 inSubnet(sIED1, smartHomeNet).
@@ -67,19 +77,32 @@ inSubnet(sIED3, smartHomeNet).
 inSubnet(sIED4, smartHomeNet).
 inSubnet(shPLC, smartHomeNet).
 inSubnet(shRouter, smartHomeNet).
-/* S-IED1 vulnerabilities */
-/* Dropbear SSH */
-networkServiceInfo(tPLC,dropbearssh,_,_,user).
-vulExists(tPLC,cve2016_7406,dropbearssh).
-vulExists(tPLC,cve2016_7407,dropbearssh).
-vulExists(tPLC,cve2016_7408,dropbearssh).
-vulExists(tPLC,cve2016_7409,dropbearssh).
+/* Smarthome PLC vulnerabilities */
+/* CodeSYS RCE */
+networkServiceInfo(shPLC,codesys,_,_,root).
+vulExists(shPLC,cve2012_6068,codesys).
+/* SSH RCE */
+networkServiceInfo(shPLC,dropbearssh,_,_,user).
+vulExists(shPLC,cve2016_7406,dropbearssh).
+vulExists(shPLC,cve2016_7407,dropbearssh).
+vulExists(shPLC,cve2016_7408,dropbearssh).
+vulExists(shPLC,cve2016_7409,dropbearssh).
 
 /* MicroGrid network */
 inSubnet(mIED1, mgNet).
 inSubnet(mIED2, mgNet).
 inSubnet(mgPLC, mgNet).
 inSubnet(mgRouter, mgNet).
+/* MicroGrid PLC vulnerabilities */
+/* CodeSYS RCE */
+networkServiceInfo(mgPLC,codesys,_,_,root).
+vulExists(mgPLC,cve2012_6068,codesys).
+/* SSH RCE */
+networkServiceInfo(mgPLC,dropbearssh,_,_,user).
+vulExists(mgPLC,cve2016_7406,dropbearssh).
+vulExists(mgPLC,cve2016_7407,dropbearssh).
+vulExists(mgPLC,cve2016_7408,dropbearssh).
+vulExists(mgPLC,cve2016_7409,dropbearssh).
 
 /* Trasmission network*/
 inSubnet(tIED1, mgNet).
@@ -87,8 +110,18 @@ inSubnet(tIED2, mgNet).
 inSubnet(tIED3, mgNet).
 inSubnet(trPLC, mgNet).
 inSubnet(tRouter, mgNet).
+/* Trasmission PLC vulnerabilities */
+/* CodeSYS RCE */
+networkServiceInfo(trPLC,codesys,_,_,root).
+vulExists(trPLC,cve2012_6068,codesys).
+/* SSH RCE */
+networkServiceInfo(trPLC,dropbearssh,_,_,user).
+vulExists(trPLC,cve2016_7406,dropbearssh).
+vulExists(trPLC,cve2016_7407,dropbearssh).
+vulExists(trPLC,cve2016_7408,dropbearssh).
+vulExists(trPLC,cve2016_7409,dropbearssh).
 
-/* TO CHECK - router link */
+/* TO CHECK - router link - at the moment are useless */
 /* Generation MicroGrid lan */
 inSubnet(gRouter, gmNet).
 inSubnet(mgRouter, gmNet).
