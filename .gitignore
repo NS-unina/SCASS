@@ -1,3 +1,4 @@
+./SafetyGrid/AttackGraph/output/
 test*
 !test_generic_ied.py
 !test_general_plc.py
