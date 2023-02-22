@@ -6,7 +6,7 @@ attackGoal(canSpoof(controlAction4)).
 attackGoal(canTamper(controlAction2)).
 attackGoal(canSpoof(controlAction2)).
 
-/* attacker location */
+/* Attacker location */
 attackerLocated(intranet).
 
 /* Enable comunication between all host */
@@ -78,20 +78,13 @@ vulExists(mainPLC,cve2016_7407,dropbearssh).
 vulExists(mainPLC,cve2016_7408,dropbearssh).
 vulExists(mainPLC,cve2016_7409,dropbearssh).
 
-/* Smart Home */
-inSubnet(shRouter, smartHomeNet).
-inSubnet(sPLC, smartHomeNet).
+/* SmartHome network */
+inSubnet(sIED1, smartHomeNet).
+inSubnet(sIED2, smartHomeNet).
 inSubnet(sIED3, smartHomeNet).
 inSubnet(sIED4, smartHomeNet).
-inSubnet(shRouter, scadaNet).
-inSubnet(sPLC, scadaNet).
-inSubnet(sIED3, scadaNet).
-inSubnet(sIED4, scadaNet).
-
-hacl(sIED1, sIED3, _, _).
-hacl(sIED3, sIED1, _, _).
-hacl(sIED2, sIED4, _, _).
-hacl(sIED4, sIED2, _, _).
+inSubnet(shPLC, smartHomeNet).
+inSubnet(shRouter, smartHomeNet).
 
 networkServiceInfo(sPLC,codesys,_,_,root).
 vulExists(sPLC,cve2012_6068,codesys).
@@ -102,15 +95,12 @@ vulExists(sPLC,cve2016_7407,dropbearssh).
 vulExists(sPLC,cve2016_7408,dropbearssh).
 vulExists(sPLC,cve2016_7409,dropbearssh).
 
-/* transmissionNet */
-inSubnet(tRouter, transmissionNet).
-inSubnet(tPLC, transmissionNet).
-inSubnet(tIED1, transmissionNet).
-inSubnet(tIED2, transmissionNet).
-inSubnet(tRouter, scadaNet).
-inSubnet(tPLC, scadaNet).
-inSubnet(tIED1, scadaNet).
-inSubnet(tIED2, scadaNet).
+/* Trasmission network*/
+inSubnet(tIED1, mgNet).
+inSubnet(tIED2, mgNet).
+inSubnet(tIED3, mgNet).
+inSubnet(trPLC, mgNet).
+inSubnet(tRouter, mgNet).
 
 networkServiceInfo(tPLC,codesys,_,_,root).
 vulExists(tPLC,cve2012_6068,codesys).
@@ -120,7 +110,6 @@ vulExists(tPLC,cve2016_7406,dropbearssh).
 vulExists(tPLC,cve2016_7407,dropbearssh).
 vulExists(tPLC,cve2016_7408,dropbearssh).
 vulExists(tPLC,cve2016_7409,dropbearssh).
-
 
 /* MicroGrid network */
 inSubnet(mIED1, mgNet).
@@ -141,7 +130,7 @@ vulExists(mgPLC,cve2012_6068,dropbearssh).
 inSubnet(gIED1, generationNet).
 inSubnet(genPLC, generationNet).
 inSubnet(gRouter, generationNet).
-%isGateway(gRouter)
+isGateway(gRouter).
 
 networkServiceInfo(genPLC,codesys,_,_,root).
 vulExists(genPLC,cve2012_6068,codesys).

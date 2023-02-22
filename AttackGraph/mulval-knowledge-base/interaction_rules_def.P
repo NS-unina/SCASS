@@ -27,7 +27,8 @@ primitive(canAccessFile(_host, _user, _access, _path)).
 /* Custom added primitives */
 primitive(l2HostDiscovery(_host, _type)).
 primitive(isGateway(_host)).
-primitive(controlsFlow(_host, _flow)).
+%primitive(controlsFlow(_host, _flow)).
+primitive(controlsFlow(_source, _destination, _flow)).
 primitive(transportsFlow(_host, _flow)).
 /* End of custom added primitives */
 
@@ -74,7 +75,7 @@ meta(advances(_, _)).
 interaction_rule(
    (canTamper(Flow) :-
 	  execCode(H, root),
-    controlsFlow(H, Flow)),
+    controlsFlow(H, _, Flow)),
    rule_desc('Controller compromised', 'certain')).
 
 interaction_rule(
@@ -144,8 +145,6 @@ interaction_rule(
    execCode(Attacker, Host, root)),
   'execution at any level if root execution').
 */
-
-
 
 /******** Section netAccess ********/
 /* accessing a host through network according to a hacl policy.
