@@ -1,3 +1,19 @@
+% MulVAL interaction rules for Linux with metric definitions
+% Author : Xinming Ou, Su Zhang
+% Copyright (C) 2011, Argus Cybersecurity Lab, Kansas State University
+
+% This program is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+%
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /******************************************************/
 /****         Predicates Declaration              *****/
 /******************************************************/
@@ -25,11 +41,9 @@ primitive(vulExists(_machine,_vulID,_program,_range,_consequence)).
 primitive(canAccessFile(_host, _user, _access, _path)).
 
 /* Custom added primitives */
-primitive(l2HostDiscovery(_host, _type)).
-primitive(isGateway(_host)).
-%primitive(controlsFlow(_host, _flow)).
-primitive(controlsFlow(_source, _destination, _flow)).
+primitive(controlsFlow(_host, _flow)).
 primitive(transportsFlow(_host, _flow)).
+primitive(isGateway(_host)).
 /* End of custom added primitives */
 
 derived(execCode(_host, _user)).
@@ -75,7 +89,7 @@ meta(advances(_, _)).
 interaction_rule(
    (canTamper(Flow) :-
 	  execCode(H, root),
-    controlsFlow(H, _, Flow)),
+    controlsFlow(H, Flow)),
    rule_desc('Controller compromised', 'certain')).
 
 interaction_rule(
@@ -145,6 +159,8 @@ interaction_rule(
    execCode(Attacker, Host, root)),
   'execution at any level if root execution').
 */
+
+
 
 /******** Section netAccess ********/
 /* accessing a host through network according to a hacl policy.
