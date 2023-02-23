@@ -15,12 +15,15 @@ hacl(_,_,_,_).
 /* Control Logic */
 /* Control flow S-PLC to S-IED4*/
 controlsFlow(sPLC, controlAction12).
+controlFlow(sPLC, sIED4,controlAction12).
 transportsFlow(shRouter, controlAction12).
 /* Control flow Master-PLC to S-PLC*/
 controlsFlow(mainPLC, controlAction4).
+controlFlow(mainPLC, shPLC, controlAction4).
 transportsFlow(mainRouter, controlAction4).
 /* Control flow Scada-System to Master-PLC*/
 controlsFlow(scadaWorkStation, controlAction2).
+controlFlow(scadaWorkStation, mainPLC,controlAction12).
 transportsFlow(routerCsw2, controlAction2).
 
 /* Vulnerabilities */
@@ -51,12 +54,11 @@ cvss(cve2022_26485,h).
 inSubnet(scadaWorkStation, scadaNet).
 inSubnet(historian, scadaNet).
 inSubnet(routerCsw2, scadaNet).
+isGateway(routerCsw2).
 
 inCompetent(scadaOperator).
 hasAccount(scadaOperator,scadaWorkStation,user).
-
 networkServiceInfo(scadaWorkStation,rdpd,rdpProtocol,rdpPort,user).
-
 networkServiceInfo(scadaWorkStation,smbServer,smbProtocol,smbPort,user).
 vulExists(scadaWorkStation,cve2017_0144,smbServer).
 vulExists(scadaWorkStation,cve2017_0267,smbServer).
@@ -66,8 +68,7 @@ vulExists(scadaWorkStation,cve2017_0269,smbServer).
 /* Main PLC */
 inSubnet(mainRouter, mainNet).
 inSubnet(mainPLC, mainNet).
-inSubnet(mainRouter, scadaNet).
-inSubnet(mainPLC, scadaNet).
+isGateway(mainRouter).
 
 networkServiceInfo(mainPLC,codesys,_,_,root).
 vulExists(mainPLC,cve2012_0668,codesys).
@@ -85,6 +86,7 @@ inSubnet(sIED3, smartHomeNet).
 inSubnet(sIED4, smartHomeNet).
 inSubnet(shPLC, smartHomeNet).
 inSubnet(shRouter, smartHomeNet).
+isGateway(shRouter).
 
 networkServiceInfo(sPLC,codesys,_,_,root).
 vulExists(sPLC,cve2012_6068,codesys).
@@ -101,6 +103,7 @@ inSubnet(tIED2, mgNet).
 inSubnet(tIED3, mgNet).
 inSubnet(trPLC, mgNet).
 inSubnet(tRouter, mgNet).
+isGateway(tRouter).
 
 networkServiceInfo(tPLC,codesys,_,_,root).
 vulExists(tPLC,cve2012_6068,codesys).
@@ -116,6 +119,7 @@ inSubnet(mIED1, mgNet).
 inSubnet(mIED2, mgNet).
 inSubnet(mgPLC, mgNet).
 inSubnet(mgRouter, mgNet).
+isGateway(mgRouter).
 
 networkServiceInfo(mgPLC,codesys,_,_,root).
 vulExists(mgPLC,cve2012_6068,codesys).
