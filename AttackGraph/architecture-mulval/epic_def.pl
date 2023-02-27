@@ -9,6 +9,7 @@ attackGoal(canSpoof(controlAction2)).
 /* Attacker location */
 attackerLocated(intranet).
 
+hacl(_, _, _, _).
 hacl(X,Y,_,_):-
 	inSubnet(X,S),
 	inSubnet(Y,S).
@@ -33,8 +34,8 @@ vulProperty(cve2016_7408,remoteExploit, privEscalation).
 cvss(cve2016_7408,h).
 vulProperty(cve2016_7409,remoteExploit, informationDisclosure).
 cvss(cve2016_7409,l).
-vulProperty(cve2012_6068,remoteExploit, privEscalation).
-cvss(cve2012_6068,h).
+vulProperty(cwe_306,remoteExploit, privEscalation).
+cvss(cwe_306,h).
 vulProperty(cve2017_0267,remoteExploit, informationDisclosure).
 cvss(cve2017_0267,m).
 vulProperty(cve2017_0268,remoteExploit, informationDisclosure).
@@ -52,7 +53,6 @@ cvss(cve2022_26485,h).
 inSubnet(scadaWorkStation, scadaNet).
 inSubnet(historian, scadaNet).
 inSubnet(mainRouter, scadaNet).
-
 inCompetent(scadaOperator).
 hasAccount(scadaOperator,scadaWorkStation,user).
 
@@ -67,8 +67,6 @@ vulExists(scadaWorkStation,cve2017_0269,smbServer).
 /* Main PLC */
 inSubnet(mainRouter, mainNet).
 inSubnet(mainPLC, mainNet).
-inSubnet(mainRouter, scadaNet).
-inSubnet(mainPLC, scadaNet).
 
 networkServiceInfo(mainPLC,codesys,_,_,root).
 vulExists(mainPLC,cve2012_0668,codesys).
@@ -79,18 +77,16 @@ vulExists(mainPLC,cve2016_7407,dropbearssh).
 vulExists(mainPLC,cve2016_7408,dropbearssh).
 vulExists(mainPLC,cve2016_7409,dropbearssh).
 
-/* Smart Home */
-inSubnet(mainRouter, smartHomeNet).
-inSubnet(sPLC, smartHomeNet).
+/* SmartHome network */
+inSubnet(sIED1, smartHomeNet).
+inSubnet(sIED2, smartHomeNet).
 inSubnet(sIED3, smartHomeNet).
 inSubnet(sIED4, smartHomeNet).
-inSubnet(mainRouter, scadaNet).
-inSubnet(sPLC, scadaNet).
-inSubnet(sIED3, scadaNet).
-inSubnet(sIED4, scadaNet).
+inSubnet(shPLC, smartHomeNet).
+inSubnet(mainRouter, smartHomeNet).
 
 networkServiceInfo(sPLC,codesys,_,_,root).
-vulExists(sPLC,cve2012_6068,codesys).
+vulExists(sPLC,cwe_306,codesys).
 
 networkServiceInfo(sPLC,dropbearssh,_,_,user).
 vulExists(sPLC,cve2016_7406,dropbearssh).
@@ -98,18 +94,14 @@ vulExists(sPLC,cve2016_7407,dropbearssh).
 vulExists(sPLC,cve2016_7408,dropbearssh).
 vulExists(sPLC,cve2016_7409,dropbearssh).
 
-/* transmissionNet */
+/* Trasmission network*/
 inSubnet(mainRouter, transmissionNet).
 inSubnet(tPLC, transmissionNet).
 inSubnet(tIED1, transmissionNet).
 inSubnet(tIED2, transmissionNet).
-inSubnet(mainRouter, scadaNet).
-inSubnet(tPLC, scadaNet).
-inSubnet(tIED1, scadaNet).
-inSubnet(tIED2, scadaNet).
-
+inSubnet(tIED3, transmissionNet).
 networkServiceInfo(tPLC,codesys,_,_,root).
-vulExists(tPLC,cve2012_6068,codesys).
+vulExists(tPLC,cwe_306,codesys).
 
 networkServiceInfo(tPLC,dropbearssh,_,_,user).
 vulExists(tPLC,cve2016_7406,dropbearssh).
@@ -117,37 +109,28 @@ vulExists(tPLC,cve2016_7407,dropbearssh).
 vulExists(tPLC,cve2016_7408,dropbearssh).
 vulExists(tPLC,cve2016_7409,dropbearssh).
 
-/* micogridNet */
+/* MicroGrid network */
 inSubnet(mainRouter, mgNet).
 inSubnet(mgPLC, mgNet).
 inSubnet(mIED1, mgNet).
 inSubnet(mIED2, mgNet).
 
-inSubnet(mainRouter, scadaNet).
-inSubnet(mgPLC, scadaNet).
-
 networkServiceInfo(mgPLC,codesys,_,_,root).
-vulExists(mgPLC,cve2012_6068,codesys).
+vulExists(mgPLC,cwe_306,codesys).
 
 networkServiceInfo(mgPLC,dropbearssh,_,_,user).
 vulExists(mgPLC,cve2016_7406,dropbearssh).
 vulExists(mgPLC,cve2016_7407,dropbearssh).
 vulExists(mgPLC,cve2016_7408,dropbearssh).
-vulExists(mgPLC,cve2012_6068,dropbearssh).
+vulExists(mgPLC,cwe_306,dropbearssh).
 
-/* generationNet */
+/* Generation network */
 inSubnet(mainRouter, generationNet).
+inSubnet(gIED1, generationNet).
 inSubnet(genPLC, generationNet).
-inSubnet(gIED1, mgNet).
-inSubnet(gIED2, mgNet).
-
-inSubnet(mainRouter, scadaNet).
-inSubnet(genPLC, scadaNet).
-inSubnet(gIED1, scadaNet).
-inSubnet(gIED2, scadaNet).
 
 networkServiceInfo(genPLC,codesys,_,_,root).
-vulExists(genPLC,cve2012_6068,codesys).
+vulExists(genPLC,cwe_306,codesys).
 
 networkServiceInfo(genPLC,dropbearssh,_,_,user).
 vulExists(genPLC,cve2016_7406,dropbearssh).
@@ -155,5 +138,5 @@ vulExists(genPLC,cve2016_7407,dropbearssh).
 vulExists(genPLC,cve2016_7408,dropbearssh).
 vulExists(genPLC,cve2016_7409,dropbearssh).
 
-hacl(scadaWorkStation, intranet, _, _).
-hacl(intranet, scadaWorkStation, _, _).
+%hacl(scadaWorkStation, intranet, _, _).
+%hacl(intranet, scadaWorkStation, _, _).

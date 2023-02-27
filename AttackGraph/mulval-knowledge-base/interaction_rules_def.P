@@ -43,6 +43,7 @@ primitive(canAccessFile(_host, _user, _access, _path)).
 /* Custom added primitives */
 primitive(controlsFlow(_host, _flow)).
 primitive(transportsFlow(_host, _flow)).
+primitive(isGateway(_host)).
 /* End of custom added primitives */
 
 derived(execCode(_host, _user)).
