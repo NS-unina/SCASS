@@ -9,20 +9,19 @@ attackGoal(canSpoof(controlAction2)).
 /* Attacker location */
 attackerLocated(intranet).
 
-hacl(X,Y,_,_):-
-	inSubnet(X,S),
-	inSubnet(Y,S).
+/* Enable comunication between all host */
+hacl(_,_,_,_).
 
 /* Control Logic */
 /* Control flow S-PLC to S-IED4*/
 controlsFlow(sPLC, controlAction12).
-transportsFlow(mainRouter, controlAction12).
+transportsFlow(shRouter, controlAction12).
 /* Control flow Master-PLC to S-PLC*/
 controlsFlow(mainPLC, controlAction4).
 transportsFlow(mainRouter, controlAction4).
 /* Control flow Scada-System to Master-PLC*/
 controlsFlow(scadaWorkStation, controlAction2).
-transportsFlow(mainRouter, controlAction2).
+transportsFlow(routerCsw2, controlAction2).
 
 /* Vulnerabilities */
 vulProperty(cve2016_7406,remoteExploit, privEscalation).
@@ -51,7 +50,7 @@ cvss(cve2022_26485,h).
 
 inSubnet(scadaWorkStation, scadaNet).
 inSubnet(historian, scadaNet).
-inSubnet(mainRouter, scadaNet).
+inSubnet(routerCsw2, scadaNet).
 
 inCompetent(scadaOperator).
 hasAccount(scadaOperator,scadaWorkStation,user).
@@ -79,15 +78,13 @@ vulExists(mainPLC,cve2016_7407,dropbearssh).
 vulExists(mainPLC,cve2016_7408,dropbearssh).
 vulExists(mainPLC,cve2016_7409,dropbearssh).
 
-/* Smart Home */
-inSubnet(mainRouter, smartHomeNet).
-inSubnet(sPLC, smartHomeNet).
+/* SmartHome network */
+inSubnet(sIED1, smartHomeNet).
+inSubnet(sIED2, smartHomeNet).
 inSubnet(sIED3, smartHomeNet).
 inSubnet(sIED4, smartHomeNet).
-inSubnet(mainRouter, scadaNet).
-inSubnet(sPLC, scadaNet).
-inSubnet(sIED3, scadaNet).
-inSubnet(sIED4, scadaNet).
+inSubnet(shPLC, smartHomeNet).
+inSubnet(shRouter, smartHomeNet).
 
 networkServiceInfo(sPLC,codesys,_,_,root).
 vulExists(sPLC,cve2012_6068,codesys).
@@ -98,15 +95,12 @@ vulExists(sPLC,cve2016_7407,dropbearssh).
 vulExists(sPLC,cve2016_7408,dropbearssh).
 vulExists(sPLC,cve2016_7409,dropbearssh).
 
-/* transmissionNet */
-inSubnet(mainRouter, transmissionNet).
-inSubnet(tPLC, transmissionNet).
-inSubnet(tIED1, transmissionNet).
-inSubnet(tIED2, transmissionNet).
-inSubnet(mainRouter, scadaNet).
-inSubnet(tPLC, scadaNet).
-inSubnet(tIED1, scadaNet).
-inSubnet(tIED2, scadaNet).
+/* Trasmission network*/
+inSubnet(tIED1, mgNet).
+inSubnet(tIED2, mgNet).
+inSubnet(tIED3, mgNet).
+inSubnet(trPLC, mgNet).
+inSubnet(tRouter, mgNet).
 
 networkServiceInfo(tPLC,codesys,_,_,root).
 vulExists(tPLC,cve2012_6068,codesys).
@@ -117,14 +111,11 @@ vulExists(tPLC,cve2016_7407,dropbearssh).
 vulExists(tPLC,cve2016_7408,dropbearssh).
 vulExists(tPLC,cve2016_7409,dropbearssh).
 
-/* micogridNet */
-inSubnet(mainRouter, mgNet).
-inSubnet(mgPLC, mgNet).
+/* MicroGrid network */
 inSubnet(mIED1, mgNet).
 inSubnet(mIED2, mgNet).
-
-inSubnet(mainRouter, scadaNet).
-inSubnet(mgPLC, scadaNet).
+inSubnet(mgPLC, mgNet).
+inSubnet(mgRouter, mgNet).
 
 networkServiceInfo(mgPLC,codesys,_,_,root).
 vulExists(mgPLC,cve2012_6068,codesys).
@@ -135,16 +126,11 @@ vulExists(mgPLC,cve2016_7407,dropbearssh).
 vulExists(mgPLC,cve2016_7408,dropbearssh).
 vulExists(mgPLC,cve2012_6068,dropbearssh).
 
-/* generationNet */
-inSubnet(mainRouter, generationNet).
+/* Generation network */
+inSubnet(gIED1, generationNet).
 inSubnet(genPLC, generationNet).
-inSubnet(gIED1, mgNet).
-inSubnet(gIED2, mgNet).
-
-inSubnet(mainRouter, scadaNet).
-inSubnet(genPLC, scadaNet).
-inSubnet(gIED1, scadaNet).
-inSubnet(gIED2, scadaNet).
+inSubnet(gRouter, generationNet).
+isGateway(gRouter).
 
 networkServiceInfo(genPLC,codesys,_,_,root).
 vulExists(genPLC,cve2012_6068,codesys).
@@ -155,5 +141,18 @@ vulExists(genPLC,cve2016_7407,dropbearssh).
 vulExists(genPLC,cve2016_7408,dropbearssh).
 vulExists(genPLC,cve2016_7409,dropbearssh).
 
-hacl(scadaWorkStation, intranet, _, _).
-hacl(intranet, scadaWorkStation, _, _).
+/* Generation MicroGrid lan */
+inSubnet(gRouter, gmNet).
+inSubnet(mgRouter, gmNet).
+/* Generation Trasmission lan */
+inSubnet(gRouter, gtNet).
+inSubnet(tRouter, gtNet).
+/* Trasmission Scada lan */
+inSubnet(tRouter, tsNet).
+inSubnet(scadaRouter, tsNet).
+/* SmartHome Scada lan */
+inSubnet(shRouter, ssNet).
+inSubnet(scadaRouter, ssNet).
+/* SmartHome Microgrid lan */
+inSubnet(shRouter, smNet).
+inSubnet(mgRouter, smNet).

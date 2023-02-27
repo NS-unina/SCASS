@@ -43,8 +43,6 @@ primitive(canAccessFile(_host, _user, _access, _path)).
 /* Custom added primitives */
 primitive(controlsFlow(_host, _flow)).
 primitive(transportsFlow(_host, _flow)).
-primitive(controlFlow(_source, _destination, _flow)).
-primitive(isGateway(_host)).
 /* End of custom added primitives */
 
 derived(execCode(_host, _user)).
@@ -90,7 +88,7 @@ meta(advances(_, _)).
 interaction_rule(
    (canTamper(Flow) :-
 	  execCode(H, root),
-    controlFlow(H, _,Flow)),
+    controlsFlow(H, Flow)),
    rule_desc('Controller compromised', 'certain')).
 
 interaction_rule(
