@@ -17,12 +17,15 @@ hacl(X,Y,_,_):-
 /* Control Logic */
 /* Control flow S-PLC to S-IED4*/
 controlsFlow(sPLC, controlAction12).
+controlFlow(sPLC, sIED4, controlAction12).
 transportsFlow(mainRouter, controlAction12).
 /* Control flow Master-PLC to S-PLC*/
 controlsFlow(mainPLC, controlAction4).
+controlFlow(mainPLC, sPLC, controlAction4).
 transportsFlow(mainRouter, controlAction4).
 /* Control flow Scada-System to Master-PLC*/
 controlsFlow(scadaWorkStation, controlAction2).
+controlFlow(scadaWorkStation, mainPLC, controlAction4).
 transportsFlow(mainRouter, controlAction2).
 
 /* Vulnerabilities */
@@ -67,16 +70,17 @@ vulExists(scadaWorkStation,cve2017_0269,smbServer).
 /* Main PLC */
 inSubnet(mainRouter, mainNet).
 inSubnet(mainPLC, mainNet).
-
+/*
 networkServiceInfo(mainPLC,codesys,_,_,root).
 vulExists(mainPLC,cve2012_0668,codesys).
-
+*/
+/*
 networkServiceInfo(mainPLC,dropbearssh,_,_,user).
 vulExists(mainPLC,cve2016_7406,dropbearssh).
 vulExists(mainPLC,cve2016_7407,dropbearssh).
 vulExists(mainPLC,cve2016_7408,dropbearssh).
 vulExists(mainPLC,cve2016_7409,dropbearssh).
-
+*/
 /* SmartHome network */
 inSubnet(sIED1, smartHomeNet).
 inSubnet(sIED2, smartHomeNet).
@@ -87,13 +91,13 @@ inSubnet(mainRouter, smartHomeNet).
 
 networkServiceInfo(sPLC,codesys,_,_,root).
 vulExists(sPLC,cwe_306,codesys).
-
+/*
 networkServiceInfo(sPLC,dropbearssh,_,_,user).
 vulExists(sPLC,cve2016_7406,dropbearssh).
 vulExists(sPLC,cve2016_7407,dropbearssh).
 vulExists(sPLC,cve2016_7408,dropbearssh).
 vulExists(sPLC,cve2016_7409,dropbearssh).
-
+*/
 /* Trasmission network*/
 inSubnet(mainRouter, transmissionNet).
 inSubnet(tPLC, transmissionNet).
@@ -102,13 +106,13 @@ inSubnet(tIED2, transmissionNet).
 inSubnet(tIED3, transmissionNet).
 networkServiceInfo(tPLC,codesys,_,_,root).
 vulExists(tPLC,cwe_306,codesys).
-
+/*
 networkServiceInfo(tPLC,dropbearssh,_,_,user).
 vulExists(tPLC,cve2016_7406,dropbearssh).
 vulExists(tPLC,cve2016_7407,dropbearssh).
 vulExists(tPLC,cve2016_7408,dropbearssh).
 vulExists(tPLC,cve2016_7409,dropbearssh).
-
+*/
 /* MicroGrid network */
 inSubnet(mainRouter, mgNet).
 inSubnet(mgPLC, mgNet).
@@ -117,13 +121,13 @@ inSubnet(mIED2, mgNet).
 
 networkServiceInfo(mgPLC,codesys,_,_,root).
 vulExists(mgPLC,cwe_306,codesys).
-
+/*
 networkServiceInfo(mgPLC,dropbearssh,_,_,user).
 vulExists(mgPLC,cve2016_7406,dropbearssh).
 vulExists(mgPLC,cve2016_7407,dropbearssh).
 vulExists(mgPLC,cve2016_7408,dropbearssh).
 vulExists(mgPLC,cwe_306,dropbearssh).
-
+*/
 /* Generation network */
 inSubnet(mainRouter, generationNet).
 inSubnet(gIED1, generationNet).
@@ -131,12 +135,12 @@ inSubnet(genPLC, generationNet).
 
 networkServiceInfo(genPLC,codesys,_,_,root).
 vulExists(genPLC,cwe_306,codesys).
-
+/*
 networkServiceInfo(genPLC,dropbearssh,_,_,user).
 vulExists(genPLC,cve2016_7406,dropbearssh).
 vulExists(genPLC,cve2016_7407,dropbearssh).
 vulExists(genPLC,cve2016_7408,dropbearssh).
 vulExists(genPLC,cve2016_7409,dropbearssh).
-
+*/
 %hacl(scadaWorkStation, intranet, _, _).
 %hacl(intranet, scadaWorkStation, _, _).

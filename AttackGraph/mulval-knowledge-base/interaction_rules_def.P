@@ -44,6 +44,8 @@ primitive(canAccessFile(_host, _user, _access, _path)).
 primitive(controlsFlow(_host, _flow)).
 primitive(transportsFlow(_host, _flow)).
 primitive(isGateway(_host)).
+primitive(controlFlow(_source, _destination, _flow)).
+
 /* End of custom added primitives */
 
 derived(execCode(_host, _user)).
@@ -85,11 +87,30 @@ meta(advances(_, _)).
 /******************************************************/
 
 /* Section Threats */
-
+/*
 interaction_rule(
    (canTamper(Flow) :-
 	  execCode(H, root),
     controlsFlow(H, Flow)),
+   rule_desc('Controller compromised', 'certain')).
+
+interaction_rule(
+    (canTamper(Flow) :-
+   	 execCode(H, root),
+     transportsFlow(H, Flow)),
+    rule_desc('Flow compromised', 'certain')).
+
+interaction_rule(
+    (canSpoof(Flow) :-
+   	 netAccess(H, Protocol, Port),
+     transportsFlow(H, Flow)),
+    rule_desc('Access transport network', 'certain')).
+*/
+
+interaction_rule(
+   (canTamper(Flow) :-
+	  execCode(H, root),
+    controlFlow(H, _,Flow)),
    rule_desc('Controller compromised', 'certain')).
 
 interaction_rule(
