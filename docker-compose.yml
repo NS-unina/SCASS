@@ -139,15 +139,15 @@ services:
       ip route add default via 192.168.72.30 &&
       ./run_script.sh"
 
-  main-PLC:
+  main-plc:
     container_name: Main-PLC
     build:
       context: ./IED
     cap_add:
       - NET_ADMIN
     networks:
-      scass-microgrid:
-        ipv4_address: "192.168.72.97"
+      scass-main:
+        ipv4_address: "192.168.72.98"
     command: "tail -f /dev/null"
 
   general-plc:
