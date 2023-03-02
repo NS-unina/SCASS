@@ -45,7 +45,9 @@ primitive(controlsFlow(_host, _flow)).
 primitive(transportsFlow(_host, _flow)).
 primitive(isGateway(_host)).
 primitive(controlFlow(_source, _destination, _flow)).
-
+primitive(feedbackFlow(_source, _destination, _flow)).
+primitive(l2Discovery(_host, _protocol)).
+%primitive(l2Discovery(_host, _protocol)).
 /* End of custom added primitives */
 
 derived(execCode(_host, _user)).

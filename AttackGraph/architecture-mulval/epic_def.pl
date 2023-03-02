@@ -16,16 +16,16 @@ hacl(X,Y,_,_):-
 
 /* Control Logic */
 /* Control flow S-PLC to S-IED4*/
-controlsFlow(sPLC, controlAction12).
 controlFlow(sPLC, sIED4, controlAction12).
+feedbackFlow(sIED4, sPLC, controlAction12).
 transportsFlow(mainRouter, controlAction12).
 /* Control flow Master-PLC to S-PLC*/
-controlsFlow(mainPLC, controlAction4).
 controlFlow(mainPLC, sPLC, controlAction4).
+feedbackFlow(sPLC, mainPLC, controlAction4).
 transportsFlow(mainRouter, controlAction4).
 /* Control flow Scada-System to Master-PLC*/
-controlsFlow(scadaWorkStation, controlAction2).
-controlFlow(scadaWorkStation, mainPLC, controlAction4).
+controlFlow(scadaWorkStation, mainPLC, controlAction2).
+feedbackFlow(mainPLC, scadaWorkStation, controlAction2).
 transportsFlow(mainRouter, controlAction2).
 
 /* Vulnerabilities */
@@ -51,6 +51,8 @@ vulProperty(cve2022_30697, localExploit, privEscalation).
 cvss(cve2022_30697,m).
 vulProperty(cve2022_26485, remoteClient, privEscalation).
 cvss(cve2022_26485,h).
+vulProperty(cve2014_6271, remoteClient, privEscalation).
+cvss(cve2014_6271,h).
 /* End Vulns */
 
 inSubnet(scadaWorkStation, scadaNet).
@@ -70,10 +72,10 @@ vulExists(scadaWorkStation,cve2017_0269,smbServer).
 /* Main PLC */
 inSubnet(mainRouter, mainNet).
 inSubnet(mainPLC, mainNet).
-/*
-networkServiceInfo(mainPLC,codesys,_,_,root).
+
+networkServiceInfo(mainPLC,apache,_,_,root).
 vulExists(mainPLC,cve2012_0668,codesys).
-*/
+
 /*
 networkServiceInfo(mainPLC,dropbearssh,_,_,user).
 vulExists(mainPLC,cve2016_7406,dropbearssh).
@@ -142,5 +144,3 @@ vulExists(genPLC,cve2016_7407,dropbearssh).
 vulExists(genPLC,cve2016_7408,dropbearssh).
 vulExists(genPLC,cve2016_7409,dropbearssh).
 */
-%hacl(scadaWorkStation, intranet, _, _).
-%hacl(intranet, scadaWorkStation, _, _).
