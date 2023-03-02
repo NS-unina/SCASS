@@ -116,6 +116,12 @@ interaction_rule(
    rule_desc('Controller compromised', 'certain')).
 
 interaction_rule(
+   (canTamper(Flow) :-
+	  execCode(H, root),
+    feedbackFlow(H, _,Flow)),
+   rule_desc('Controller compromised', 'certain')).
+
+interaction_rule(
     (canTamper(Flow) :-
    	 execCode(H, root),
      transportsFlow(H, Flow)),

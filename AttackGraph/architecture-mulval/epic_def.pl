@@ -5,6 +5,12 @@ attackGoal(canTamper(controlAction4)).
 attackGoal(canSpoof(controlAction4)).
 attackGoal(canTamper(controlAction2)).
 attackGoal(canSpoof(controlAction2)).
+attackGoal(canTamper(feedbackAction12)).
+attackGoal(canSpoof(feedbackAction12)).
+attackGoal(canTamper(feedbackAction4)).
+attackGoal(canSpoof(feedbackAction4)).
+attackGoal(canTamper(feedbackAction2)).
+attackGoal(canSpoof(feedbackAction2)).
 
 /* Attacker location */
 attackerLocated(intranet).
@@ -17,16 +23,19 @@ hacl(X,Y,_,_):-
 /* Control Logic */
 /* Control flow S-PLC to S-IED4*/
 controlFlow(sPLC, sIED4, controlAction12).
-feedbackFlow(sIED4, sPLC, controlAction12).
+feedbackFlow(sIED4, sPLC, feedbackAction12).
 transportsFlow(mainRouter, controlAction12).
+transportsFlow(mainRouter, feedbackAction12).
 /* Control flow Master-PLC to S-PLC*/
 controlFlow(mainPLC, sPLC, controlAction4).
-feedbackFlow(sPLC, mainPLC, controlAction4).
+feedbackFlow(sPLC, mainPLC, feedbackAction4).
 transportsFlow(mainRouter, controlAction4).
+transportsFlow(mainRouter, feedbackAction4).
 /* Control flow Scada-System to Master-PLC*/
 controlFlow(scadaWorkStation, mainPLC, controlAction2).
-feedbackFlow(mainPLC, scadaWorkStation, controlAction2).
+feedbackFlow(mainPLC, scadaWorkStation, feedbackAction2).
 transportsFlow(mainRouter, controlAction2).
+transportsFlow(mainRouter, feedbackAction2).
 
 /* Vulnerabilities */
 vulProperty(cve2016_7406,remoteExploit, privEscalation).
@@ -39,6 +48,8 @@ vulProperty(cve2016_7409,remoteExploit, informationDisclosure).
 cvss(cve2016_7409,l).
 vulProperty(cwe_306,remoteExploit, privEscalation).
 cvss(cwe_306,h).
+vulProperty(cwe_521,remoteExploit, privEscalation).
+cvss(cwe_521,h).
 vulProperty(cve2017_0267,remoteExploit, informationDisclosure).
 cvss(cve2017_0267,m).
 vulProperty(cve2017_0268,remoteExploit, informationDisclosure).
@@ -53,14 +64,19 @@ vulProperty(cve2022_26485, remoteClient, privEscalation).
 cvss(cve2022_26485,h).
 vulProperty(cve2014_6271, remoteClient, privEscalation).
 cvss(cve2014_6271,h).
+vulProperty(cve2012_0668, remoteClient, privEscalation).
+cvss(cve2014_6271,h).
 /* End Vulns */
 
 inSubnet(scadaWorkStation, scadaNet).
 inSubnet(historian, scadaNet).
 inSubnet(mainRouter, scadaNet).
+
+networkServiceInfo(mainRouter,ssh,_,_,root).
+vulExists(mainPLC,cwe_521,codesys).
+
 inCompetent(scadaOperator).
 hasAccount(scadaOperator,scadaWorkStation,user).
-
 networkServiceInfo(scadaWorkStation,rdpd,rdpProtocol,rdpPort,user).
 
 networkServiceInfo(scadaWorkStation,smbServer,smbProtocol,smbPort,user).
