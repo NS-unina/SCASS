@@ -9,7 +9,8 @@ services:
       scass-generation:
         ipv4_address: "192.168.72.82"
     command: >-
-      sh -c "ip route del default &&
+      sh -c "export TERM=xterm &&
+      ip route del default &&
       ip route add default via 192.168.72.94 &&
       ./run_script.sh"
 
@@ -23,7 +24,8 @@ services:
       scass-smarthome:
         ipv4_address: "192.168.72.34"
     command: >-
-      sh -c "ip route del default &&
+      sh -c "export TERM=xterm &&
+      ip route del default &&
       ip route add default via 192.168.72.46 &&
       ./run_script.sh"
   
@@ -37,7 +39,8 @@ services:
       scass-smarthome:
         ipv4_address: "192.168.72.35"
     command: >-
-      sh -c "ip route del default &&
+      sh -c "export TERM=xterm &&
+      ip route del default &&
       ip route add default via 192.168.72.46 &&
       ./run_script.sh"
 
@@ -51,7 +54,8 @@ services:
       scass-smarthome:
         ipv4_address: "192.168.72.36"
     command: >-
-      sh -c "ip route del default &&
+      sh -c "export TERM=xterm && 
+      ip route del default &&
       ip route add default via 192.168.72.46 &&
       ./run_script.sh"
 
@@ -65,7 +69,8 @@ services:
       scass-smarthome:
         ipv4_address: "192.168.72.37"
     command: >-
-      sh -c "ip route del default &&
+      sh -c "export TERM=xterm &&
+      ip route del default &&
       ip route add default via 192.168.72.46 &&
       ./run_script.sh"
   
@@ -79,7 +84,8 @@ services:
       scass-trasmission:
         ipv4_address: "192.168.72.50"
     command: >-
-      sh -c "ip route del default &&
+      sh -c "export TERM=xterm &&
+      ip route del default &&
       ip route add default via 192.168.72.62 &&
       ./run_script.sh"
     
@@ -93,7 +99,8 @@ services:
       scass-trasmission:
         ipv4_address: "192.168.72.51"
     command: >-
-      sh -c "ip route del default &&
+      sh -c "export TERM=xterm &&
+      ip route del default &&
       ip route add default via 192.168.72.62 &&
       ./run_script.sh"
 
@@ -107,7 +114,8 @@ services:
       scass-trasmission:
         ipv4_address: "192.168.72.52"
     command: >-
-      sh -c "ip route del default &&
+      sh -c "export TERM=xterm &&
+      ip route del default &&
       ip route add default via 192.168.72.62 &&
       tail -f /dev/null"
 
@@ -135,7 +143,8 @@ services:
       scass-microgrid:
         ipv4_address: "192.168.72.19"
     command: >-
-      sh -c "ip route del default &&
+      sh -c "export TERM=xterm &&
+      ip route del default &&
       ip route add default via 192.168.72.30 &&
       ./run_script.sh"
 
