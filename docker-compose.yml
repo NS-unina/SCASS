@@ -1,8 +1,8 @@
 services: 
   g-ied1:
     container_name: G-IED1
-    build:
-      context: ./IED
+    build: IED
+    image: ied
     cap_add:
       - NET_ADMIN
     networks:
@@ -16,8 +16,7 @@ services:
 
   s-ied1:
     container_name: S-IED1
-    build:
-      context: ./IED
+    image: ied
     cap_add:
       - NET_ADMIN
     networks:
@@ -31,8 +30,7 @@ services:
   
   s-ied2:
     container_name: S-IED2
-    build:
-      context: ./IED
+    image: ied
     cap_add:
       - NET_ADMIN
     networks:
@@ -46,8 +44,7 @@ services:
 
   s-ied3:
     container_name: S-IED3
-    build:
-      context: ./IED
+    image: ied
     cap_add:
       - NET_ADMIN
     networks:
@@ -61,8 +58,7 @@ services:
 
   s-ied4:
     container_name: S-IED4
-    build:
-      context: ./IED
+    image: ied
     cap_add:
       - NET_ADMIN
     networks:
@@ -76,8 +72,7 @@ services:
   
   t-ied1:
     container_name: T-IED1
-    build:
-      context: ./IED
+    image: ied
     cap_add:
       - NET_ADMIN
     networks:
@@ -91,8 +86,7 @@ services:
     
   t-ied2:
     container_name: T-IED2
-    build:
-      context: ./IED
+    image: ied
     cap_add:
       - NET_ADMIN
     networks:
@@ -106,8 +100,7 @@ services:
 
   t-ied3:
     container_name: T-IED3
-    build:
-      context: ./IED
+    image: ied
     cap_add:
       - NET_ADMIN
     networks:
@@ -120,8 +113,7 @@ services:
 
   m-ied1:
     container_name: M-IED1
-    build:
-      context: ./IED
+    image: ied
     cap_add:
       - NET_ADMIN
     networks:
@@ -134,8 +126,7 @@ services:
 
   m-ied2:
     container_name: M-IED2
-    build:
-      context: ./IED
+    image: ied
     cap_add:
       - NET_ADMIN
     networks:
@@ -148,8 +139,7 @@ services:
 
   main-plc:
     container_name: Main-PLC
-    build:
-      context: ./IED
+    image: ied
     cap_add:
       - NET_ADMIN
     networks:
