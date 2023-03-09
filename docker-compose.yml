@@ -219,6 +219,15 @@ services:
       iptables -A FORWARD -i eth4 -j ACCEPT &&
       iptables -A FORWARD -i eth5 -j ACCEPT &&
       tail -f /dev/null"
+
+  test-node:
+    container_name: Test-Node
+    build:
+      context: ./TestNode
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: >-
+      sh -c "tail -f /dev/null"
  
 networks:     
   scass-microgrid:
