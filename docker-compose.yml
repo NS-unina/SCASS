@@ -114,10 +114,9 @@ services:
       scass-trasmission:
         ipv4_address: "192.168.72.52"
     command: >-
-      sh -c "export TERM=xterm &&
-      ip route del default &&
+      sh -c "ip route del default &&
       ip route add default via 192.168.72.62 &&
-      tail -f /dev/null"
+      ./run_script.sh"
 
   m-ied1:
     container_name: M-IED1
@@ -143,8 +142,7 @@ services:
       scass-microgrid:
         ipv4_address: "192.168.72.19"
     command: >-
-      sh -c "export TERM=xterm &&
-      ip route del default &&
+      sh -c "ip route del default &&
       ip route add default via 192.168.72.30 &&
       ./run_script.sh"
 
@@ -169,7 +167,11 @@ services:
     networks:
       scass-scada:
         ipv4_address: "192.168.72.66"
-
+    entrypoint: >-
+      sh -c "ip route del default &&
+      ip route add default via 192.168.72.78 &&
+      ./entrypoint.sh"
+    
   general-man:
     container_name: General-Man
     build:
