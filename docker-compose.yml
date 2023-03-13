@@ -137,21 +137,21 @@ services:
       ip route add default via 192.168.72.30 &&
       ./run_script.sh"
 
-  main-plc:
-    container_name: Main-PLC
-    image: ied
+  master-plc:
+    container_name: Master-PLC
+    build: Master-PLC
     cap_add:
       - NET_ADMIN
     networks:
-      scass-main:
+      scass-plc:
         ipv4_address: "192.168.72.98"
     command: "tail -f /dev/null"
 
-  general-plc:
-    container_name: General-PLC
+  scada-system:
+    container_name: SCADA-System
     user: root
     build:
-      context: ./GeneralPLC
+      context: ./SCADA-System
     cap_add:
       - NET_ADMIN
     networks:
@@ -193,7 +193,7 @@ services:
         ipv4_address: "192.168.72.78"
       scass-generation:
         ipv4_address: "192.168.72.94"
-      scass-main:
+      scass-plc:
         ipv4_address: "192.168.72.110"
     command: >-
       sh -c "iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE &&
@@ -265,8 +265,8 @@ networks:
       config:
         - subnet: "192.168.72.80/28"
   
-  scass-main:
-    name: scass-main
+  scass-plc:
+    name: scass-plc
     driver: macvlan
     driver_opts:
       parent: eth0.7
