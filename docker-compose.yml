@@ -1,106 +1,106 @@
 services: 
   g-ied1:
     container_name: G-IED1
-    build:
-      context: ./IED
+    build: IED
+    image: ied
     cap_add:
       - NET_ADMIN
     networks:
       scass-generation:
         ipv4_address: "192.168.72.82"
     command: >-
-      sh -c "ip route del default &&
+      sh -c "export TERM=xterm &&
+      ip route del default &&
       ip route add default via 192.168.72.94 &&
       ./run_script.sh"
 
   s-ied1:
     container_name: S-IED1
-    build:
-      context: ./IED
+    image: ied
     cap_add:
       - NET_ADMIN
     networks:
       scass-smarthome:
         ipv4_address: "192.168.72.34"
     command: >-
-      sh -c "ip route del default &&
+      sh -c "export TERM=xterm &&
+      ip route del default &&
       ip route add default via 192.168.72.46 &&
       ./run_script.sh"
   
   s-ied2:
     container_name: S-IED2
-    build:
-      context: ./IED
+    image: ied
     cap_add:
       - NET_ADMIN
     networks:
       scass-smarthome:
         ipv4_address: "192.168.72.35"
     command: >-
-      sh -c "ip route del default &&
+      sh -c "export TERM=xterm &&
+      ip route del default &&
       ip route add default via 192.168.72.46 &&
       ./run_script.sh"
 
   s-ied3:
     container_name: S-IED3
-    build:
-      context: ./IED
+    image: ied
     cap_add:
       - NET_ADMIN
     networks:
       scass-smarthome:
         ipv4_address: "192.168.72.36"
     command: >-
-      sh -c "ip route del default &&
+      sh -c "export TERM=xterm && 
+      ip route del default &&
       ip route add default via 192.168.72.46 &&
       ./run_script.sh"
 
   s-ied4:
     container_name: S-IED4
-    build:
-      context: ./IED
+    image: ied
     cap_add:
       - NET_ADMIN
     networks:
       scass-smarthome:
         ipv4_address: "192.168.72.37"
     command: >-
-      sh -c "ip route del default &&
+      sh -c "export TERM=xterm &&
+      ip route del default &&
       ip route add default via 192.168.72.46 &&
       ./run_script.sh"
   
   t-ied1:
     container_name: T-IED1
-    build:
-      context: ./IED
+    image: ied
     cap_add:
       - NET_ADMIN
     networks:
       scass-trasmission:
         ipv4_address: "192.168.72.50"
     command: >-
-      sh -c "ip route del default &&
+      sh -c "export TERM=xterm &&
+      ip route del default &&
       ip route add default via 192.168.72.62 &&
       ./run_script.sh"
     
   t-ied2:
     container_name: T-IED2
-    build:
-      context: ./IED
+    image: ied
     cap_add:
       - NET_ADMIN
     networks:
       scass-trasmission:
         ipv4_address: "192.168.72.51"
     command: >-
-      sh -c "ip route del default &&
+      sh -c "export TERM=xterm &&
+      ip route del default &&
       ip route add default via 192.168.72.62 &&
       ./run_script.sh"
 
   t-ied3:
     container_name: T-IED3
-    build:
-      context: ./IED
+    image: ied
     cap_add:
       - NET_ADMIN
     networks:
@@ -109,12 +109,11 @@ services:
     command: >-
       sh -c "ip route del default &&
       ip route add default via 192.168.72.62 &&
-      tail -f /dev/null"
+      ./run_script.sh"
 
   m-ied1:
     container_name: M-IED1
-    build:
-      context: ./IED
+    image: ied
     cap_add:
       - NET_ADMIN
     networks:
@@ -127,8 +126,7 @@ services:
 
   m-ied2:
     container_name: M-IED2
-    build:
-      context: ./IED
+    image: ied
     cap_add:
       - NET_ADMIN
     networks:
@@ -139,28 +137,31 @@ services:
       ip route add default via 192.168.72.30 &&
       ./run_script.sh"
 
-  main-PLC:
-    container_name: Main-PLC
-    build:
-      context: ./IED
+  master-plc:
+    container_name: Master-PLC
+    build: Master-PLC
     cap_add:
       - NET_ADMIN
     networks:
-      scass-microgrid:
-        ipv4_address: "192.168.72.97"
+      scass-plc:
+        ipv4_address: "192.168.72.98"
     command: "tail -f /dev/null"
 
-  general-plc:
-    container_name: General-PLC
+  scada-system:
+    container_name: SCADA-System
     user: root
     build:
-      context: ./GeneralPLC
+      context: ./SCADA-System
     cap_add:
       - NET_ADMIN
     networks:
       scass-scada:
         ipv4_address: "192.168.72.66"
-
+    entrypoint: >-
+      sh -c "ip route del default &&
+      ip route add default via 192.168.72.78 &&
+      ./entrypoint.sh"
+    
   general-man:
     container_name: General-Man
     build:
@@ -192,7 +193,7 @@ services:
         ipv4_address: "192.168.72.78"
       scass-generation:
         ipv4_address: "192.168.72.94"
-      scass-main:
+      scass-plc:
         ipv4_address: "192.168.72.110"
     command: >-
       sh -c "iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE &&
@@ -208,6 +209,15 @@ services:
       iptables -A FORWARD -i eth4 -j ACCEPT &&
       iptables -A FORWARD -i eth5 -j ACCEPT &&
       tail -f /dev/null"
+
+  test-node:
+    container_name: Test-Node
+    build:
+      context: ./TestNode
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: >-
+      sh -c "tail -f /dev/null"
  
 networks:     
   scass-microgrid:
@@ -255,8 +265,8 @@ networks:
       config:
         - subnet: "192.168.72.80/28"
   
-  scass-main:
-    name: scass-main
+  scass-plc:
+    name: scass-plc
     driver: macvlan
     driver_opts:
       parent: eth0.7

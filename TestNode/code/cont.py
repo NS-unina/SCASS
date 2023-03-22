@@ -1,0 +1,25 @@
+import docker
+
+client = docker.from_env()
+
+container = client.containers.get("S-IED1")
+print(container.logs(tail=1))
+container = client.containers.get("S-IED2")
+print(container.logs(tail=1))
+container = client.containers.get("S-IED3")
+print(container.logs(tail=1))
+container = client.containers.get("S-IED4")
+print(container.logs(tail=1))
+container = client.containers.get("T-IED1")
+print(container.logs(tail=1))
+container = client.containers.get("T-IED2")
+print(container.logs(tail=1))
+container = client.containers.get("T-IED3")
+print(container.logs(tail=1))
+container = client.containers.get("M-IED1")
+print(container.logs(tail=1))
+container = client.containers.get("M-IED2")
+print(container.logs(tail=1))
+container = client.containers.get("G-IED1")
+print(container.logs(tail=1))
+

@@ -2,8 +2,8 @@ FROM python:3.11.0-bullseye
 
 COPY ./code/ /root/
 
-WORKDIR /root
-RUN apt update && apt install docker.io -y
-RUN pip install -r requirements.txt
+RUN apt update && apt install -y iproute2 iptables 
 
-CMD tail -f /dev/null
+WORKDIR /root
+RUN pip install -r requirements.txt
+CMD ./run_script.sh
