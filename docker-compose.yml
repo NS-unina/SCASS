@@ -210,6 +210,14 @@ services:
       iptables -A FORWARD -i eth5 -j ACCEPT &&
       tail -f /dev/null"
 
+  control-gateway:
+    container_name: C-Gateway
+    build:
+      context: ./InternalGateway
+    cap_add:
+      - NET_ADMIN
+    command: "tail -f /dev/null"
+
   test-node:
     container_name: Test-Node
     build:
