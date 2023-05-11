@@ -148,6 +148,7 @@ services:
         ipv4_address: "192.168.72.66"
     command: >-
       sh -c "ip route del default &&
+      ip route add 192.168.72.96/28 via 192.168.72.78 &&
       ip route add default via 192.168.72.77 &&
       tail -f /dev/null"
 
