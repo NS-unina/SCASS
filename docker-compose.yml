@@ -108,6 +108,7 @@ services:
         ipv4_address: "192.168.72.52"
     command: >-
       sh -c "ip route del default &&
+      ip route add 172.10.1.0/24 via 192.168.72.78
       ip route add default via 192.168.72.62 &&
       ./run_script.sh"
 
@@ -143,9 +144,12 @@ services:
     cap_add:
       - NET_ADMIN
     networks:
-      scass-plc:
-        ipv4_address: "192.168.72.98"
-    command: "tail -f /dev/null"
+      scass-scada:
+        ipv4_address: "192.168.72.66"
+    command: >-
+      sh -c "ip route del default &&
+      ip route add default via 192.168.72.77 &&
+      tail -f /dev/null"
 
   scada-system:
     container_name: SCADA-System
@@ -155,11 +159,11 @@ services:
     cap_add:
       - NET_ADMIN
     networks:
-      scass-scada:
-        ipv4_address: "192.168.72.66"
+      scass-plc:
+        ipv4_address: "192.168.72.98"
     entrypoint: >-
       sh -c "ip route del default &&
-      ip route add default via 192.168.72.78 &&
+      ip route add default via 192.168.72.110 &&
       ./entrypoint.sh"
     
   general-man:
@@ -172,8 +176,8 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - ~/.Xauthority:/root/.Xauthority
     networks:
-      scass-scada:
-        ipv4_address: "192.168.72.67"
+      scass-plc:
+        ipv4_address: "192.168.72.99"
     command: "tail -f /dev/null"
 
   internal-gateway:
@@ -192,15 +196,19 @@ services:
         ipv4_address: "192.168.72.62"
       scass-generation:
         ipv4_address: "192.168.72.94"
+      scass-scada:
+        ipv4_address: "192.168.72.77"
     command: >-
       sh -c "iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE &&
       iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE &&
       iptables -t nat -A POSTROUTING -o eth2 -j MASQUERADE &&
       iptables -t nat -A POSTROUTING -o eth3 -j MASQUERADE &&
+      iptables -t nat -A POSTROUTING -o eth4 -j MASQUERADE &&
       iptables -A FORWARD -i eth0 -j ACCEPT &&
       iptables -A FORWARD -i eth1 -j ACCEPT &&
       iptables -A FORWARD -i eth2 -j ACCEPT &&
       iptables -A FORWARD -i eth3 -j ACCEPT &&
+      iptables -A FORWARD -i eth4 -j ACCEPT &&
       tail -f /dev/null"
 
   control-gateway:
