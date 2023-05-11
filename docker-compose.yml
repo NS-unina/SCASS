@@ -140,17 +140,18 @@ services:
 
   master-plc:
     container_name: Master-PLC
-    build: Master-PLC
+    build: ./vaas-cve-2014-6271
     cap_add:
       - NET_ADMIN
     networks:
       scass-scada:
         ipv4_address: "192.168.72.66"
+    command: "tail -f /dev/null"
     command: >-
       sh -c "ip route del default &&
       ip route add 192.168.72.96/28 via 192.168.72.78 &&
       ip route add default via 192.168.72.77 &&
-      tail -f /dev/null"
+      ./run_script.sh"
 
   scada-system:
     container_name: SCADA-System
@@ -171,6 +172,8 @@ services:
     container_name: General-Man
     build:
       context: ./GeneralMan
+    cap_add:
+      - NET_ADMIN
     environment:
       DISPLAY: $DISPLAY
     volumes:
@@ -180,6 +183,9 @@ services:
       scass-plc:
         ipv4_address: "192.168.72.99"
     command: "tail -f /dev/null"
+    #  sh -c "ip route del default &&
+    #  ip route add default via 192.168.72.110 &&
+    #  tail -f /dev/null"
 
   internal-gateway:
     container_name: I-Gateway
@@ -239,6 +245,9 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     command: >-
       sh -c "tail -f /dev/null"
+    networks:
+      scass-scada:
+        ipv4_address: "192.168.72.67"
  
 networks:     
   scass-microgrid:
