@@ -178,6 +178,7 @@ services:
 
   internal-gateway:
     container_name: I-Gateway
+    image: gateway 
     build:
       context: ./InternalGateway
     cap_add:
@@ -189,34 +190,37 @@ services:
         ipv4_address: "192.168.72.46"
       scass-trasmission:
         ipv4_address: "192.168.72.62"
-      scass-scada:
-        ipv4_address: "192.168.72.78"
       scass-generation:
         ipv4_address: "192.168.72.94"
-      scass-plc:
-        ipv4_address: "192.168.72.110"
     command: >-
       sh -c "iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE &&
       iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE &&
       iptables -t nat -A POSTROUTING -o eth2 -j MASQUERADE &&
       iptables -t nat -A POSTROUTING -o eth3 -j MASQUERADE &&
-      iptables -t nat -A POSTROUTING -o eth4 -j MASQUERADE &&
-      iptables -t nat -A POSTROUTING -o eth5 -j MASQUERADE &&
       iptables -A FORWARD -i eth0 -j ACCEPT &&
       iptables -A FORWARD -i eth1 -j ACCEPT &&
       iptables -A FORWARD -i eth2 -j ACCEPT &&
       iptables -A FORWARD -i eth3 -j ACCEPT &&
-      iptables -A FORWARD -i eth4 -j ACCEPT &&
-      iptables -A FORWARD -i eth5 -j ACCEPT &&
       tail -f /dev/null"
 
   control-gateway:
     container_name: C-Gateway
+    image: gateway
     build:
       context: ./InternalGateway
     cap_add:
       - NET_ADMIN
-    command: "tail -f /dev/null"
+    networks:
+      scass-scada:
+        ipv4_address: "192.168.72.78"
+      scass-plc:
+        ipv4_address: "192.168.72.110"
+    command: >-
+        sh -c "iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE &&
+        iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE &&
+        iptables -A FORWARD -i eth0 -j ACCEPT &&
+        iptables -A FORWARD -i eth1 -j ACCEPT &&
+        tail -f /dev/null"
 
   test-node:
     container_name: Test-Node
