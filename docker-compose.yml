@@ -139,8 +139,8 @@ services:
       ./run_script.sh"
 
   master-plc:
-    container_name: Master-PLC
-    build: ./vaas-cve-2014-6271
+    container_name: General-PLC
+    build: ./General-PLC
     cap_add:
       - NET_ADMIN
     networks:
