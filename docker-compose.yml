@@ -139,7 +139,7 @@ services:
       ./run_script.sh"
 
   master-plc:
-    container_name: General-PLC
+    container_name: Master-PLC
     build: ./General-PLC
     cap_add:
       - NET_ADMIN
@@ -248,14 +248,6 @@ services:
     networks:
       scass-scada:
         ipv4_address: "192.168.72.67"
-
-  attacker-node:
-    container_name: Attacker-Node
-    command: >-
-      sh -c "tail -f /dev/null"
-    networks:
-      scass-scada:
-        ipv4_address: "192.168.72.68"
  
 networks:     
   scass-microgrid:
