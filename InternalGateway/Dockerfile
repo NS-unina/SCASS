@@ -8,6 +8,4 @@ RUN  echo 'admin:admin' | chpasswd
 
 RUN service ssh start
 
-EXPOSE 22
-
 CMD ["/usr/sbin/sshd","-D"]

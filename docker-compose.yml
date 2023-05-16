@@ -213,7 +213,7 @@ services:
       iptables -A FORWARD -i eth2 -j ACCEPT &&
       iptables -A FORWARD -i eth3 -j ACCEPT &&
       iptables -A FORWARD -i eth4 -j ACCEPT &&
-      tail -f /dev/null"
+      /usr/sbin/sshd -D"
 
   control-gateway:
     container_name: C-Gateway
