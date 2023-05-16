@@ -144,7 +144,7 @@ services:
     cap_add:
       - NET_ADMIN
     networks:
-      scass-scada:
+      scass-plc:
         ipv4_address: "192.168.72.66"
     command: "tail -f /dev/null"
     command: >-
@@ -161,7 +161,7 @@ services:
     cap_add:
       - NET_ADMIN
     networks:
-      scass-plc:
+      scass-scada:
         ipv4_address: "192.168.72.98"
     entrypoint: >-
       sh -c "ip route del default &&
@@ -180,12 +180,9 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - ~/.Xauthority:/root/.Xauthority
     networks:
-      scass-plc:
+      scass-scada:
         ipv4_address: "192.168.72.99"
     command: "tail -f /dev/null"
-    #  sh -c "ip route del default &&
-    #  ip route add default via 192.168.72.110 &&
-    #  tail -f /dev/null"
 
   internal-gateway:
     container_name: I-Gateway
@@ -203,7 +200,7 @@ services:
         ipv4_address: "192.168.72.62"
       scass-generation:
         ipv4_address: "192.168.72.94"
-      scass-scada:
+      scass-plc:
         ipv4_address: "192.168.72.77"
     command: >-
       sh -c "iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE &&
@@ -226,9 +223,9 @@ services:
     cap_add:
       - NET_ADMIN
     networks:
-      scass-scada:
-        ipv4_address: "192.168.72.78"
       scass-plc:
+        ipv4_address: "192.168.72.78"
+      scass-scada:
         ipv4_address: "192.168.72.110"
     command: >-
         sh -c "iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE &&
@@ -246,9 +243,23 @@ services:
     command: >-
       sh -c "tail -f /dev/null"
     networks:
-      scass-scada:
+      scass-plc:
         ipv4_address: "192.168.72.67"
  
+  attacker-node:
+    container_name: Attacker-Node
+    build:
+      context: ./AttackerNode
+    cap_add:
+      - NET_ADMIN
+    networks:
+      scass-scada:
+        ipv4_address: "192.168.72.100"
+    command: >-
+      sh -c "ip route del default &&
+      ip route add default via 192.168.72.110 && 
+      tail -f /dev/null"
+
 networks:     
   scass-microgrid:
     name: scass-microgrid
@@ -284,7 +295,7 @@ networks:
       parent: eth0.5
     ipam:
       config:
-        - subnet: "192.168.72.64/28"
+        - subnet: "192.168.72.96/28"
           
   scass-generation:
     name: scass-generation
@@ -302,4 +313,4 @@ networks:
       parent: eth0.7
     ipam:
       config:
-        - subnet: "192.168.72.96/28"
+        - subnet: "192.168.72.64/28"
