@@ -6,7 +6,6 @@ attackGoal(canTamper(controlAction4)).
 attackGoal(canSpoof(controlAction4)).
 attackGoal(canTamper(controlAction2)).
 attackGoal(canSpoof(controlAction2)).
-%TO CHECK with Luca
 attackGoal(arpPoisoning(scadaWorkStation, mainRouter)).
 /*attackGoal(canTamper(feedbackAction12)).
 attackGoal(canSpoof(feedbackAction12)).

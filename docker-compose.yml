@@ -146,7 +146,6 @@ services:
     networks:
       scass-plc:
         ipv4_address: "192.168.72.66"
-    command: "tail -f /dev/null"
     command: >-
       sh -c "ip route del default &&
       ip route add 192.168.72.96/28 via 192.168.72.78 &&

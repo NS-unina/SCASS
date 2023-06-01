@@ -134,7 +134,7 @@ interaction_rule(
 
 interaction_rule(
     (canSpoof(Flow) :-
-   	 netAccess(H, Protocol, Port),
+   	 execCode(H, root),
      transportsFlow(H, Flow)),
     rule_desc('Access transport network', 'certain')).
 
