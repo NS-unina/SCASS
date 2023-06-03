@@ -1,7 +1,5 @@
 /* Attack goal */
-attackGoal(canTamper(controlAction2)).
 attackGoal(canSpoof(controlAction2)).
-attackGoal(arpPoisoning(scadaWorkStation, mainRouter)).
 
 /* Attacker location */
 attackerLocated(scadaNet).
@@ -15,9 +13,7 @@ hacl(X,Y,_,_):-
 /* Control flow Scada-System to Master-PLC*/
 controlFlow(scadaWorkStation, mainPLC, controlAction2).
 protocol(controlAction2, plaintext).
-feedbackFlow(mainPLC, scadaWorkStation, feedbackAction2).
 transportsFlow(mainRouter, controlAction2).
-transportsFlow(mainRouter, feedbackAction2).
 
 /* Scada network */
 inSubnet(scadaWorkStation, scadaNet).
