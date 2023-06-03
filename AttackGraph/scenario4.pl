@@ -6,9 +6,8 @@ attackGoal(canSpoof(controlAction2)).
 attackerLocated(attackerNode).
 
 /* Access Control rules */
-hacl(J,K,_,_):-
-	inSubnet(J,scadaNet),
-	inSubnet(K,smartHomeNet).
+hacl(scadaWorkStation,mainPLC,_,_).
+hacl(attackerNode,mainPLC,_,_).
 
 hacl(X,Y,_,_):-
 	inSubnet(X,S),
@@ -73,6 +72,8 @@ inSubnet(gIED1, generationNet).
 inSubnet(genPLC, generationNet).
 
 /* Vulnerabilities */
+vulProperty(cve2012_0668,remoteExploit, privEscalation).
+cvss(cve2012_0668,h).
 vulProperty(cwe_521,remoteExploit, privEscalation).
 cvss(cwe_521,h).
 /* End Vulns */

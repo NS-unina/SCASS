@@ -1,7 +1,7 @@
 /* Attack goal */
 attackGoal(canSpoof(controlAction12)).
 attackGoal(canSpoof(controlAction2)).
-
+attackGoal(execCode(mainPLC, _))
 /* Attacker location */
 attackerLocated(attackerNode).
 
