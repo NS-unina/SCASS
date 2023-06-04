@@ -27,5 +27,5 @@ vulExists(scadaWorkStation,cve2017_0144,smbServer).
 
 /* Vulnerabilities */
 vulProperty(cve2017_0144,remoteExploit, privEscalation).
-cvss(cve2017_0144,h).
+cvss(cve2017_0144).
 /* End Vulns */

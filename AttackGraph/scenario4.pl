@@ -42,8 +42,9 @@ inSubnet(mainRouter, mainNet).
 networkServiceInfo(mainPLC,apache,httpProtocol,httpPort,root).
 vulExists(mainPLC,cve2012_0668,apache).
 
-networkServiceInfo(mainRouter,apache,httpProtocol,httpPort,root).
-vulExists(mainRouter,cve2012_0668,apache).
+inCompetent(scadaOperator).
+hasAccount(scadaOperator,mainRouter,root).
+networkServiceInfo(mainRouter, sshd, ssh, sshPort, root).
 
 /* SmartHome network */
 inSubnet(sIED1, smartHomeNet).
@@ -73,7 +74,7 @@ inSubnet(genPLC, generationNet).
 
 /* Vulnerabilities */
 vulProperty(cve2012_0668,remoteExploit, privEscalation).
-cvss(cve2012_0668,h).
+cvss(cve2012_0668).
 vulProperty(cwe_521,remoteExploit, privEscalation).
-cvss(cwe_521,h).
+cvss(cwe_521).
 /* End Vulns */

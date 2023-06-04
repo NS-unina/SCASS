@@ -39,5 +39,5 @@ vulExists(sPLC,cwe_306,codesys).
 
 /* Vulnerabilities */
 vulProperty(cwe_306,remoteExploit, privEscalation).
-cvss(cwe_306,h).
+cvss(cwe_306).
 /* End Vulns */

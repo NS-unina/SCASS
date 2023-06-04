@@ -35,5 +35,5 @@ vulExists(mainPLC,cve2012_0668,apache).
 
 /* Vulnerabilities */
 vulProperty(cve2012_0668,remoteExploit, privEscalation).
-cvss(cve2012_0668,h).
+cvss(cve2012_0668).
 /* End Vulns */

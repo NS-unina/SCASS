@@ -67,7 +67,7 @@ derived(arpPoisoning(_host1, _host2)).
 /* End of custom added primitives */
 
 %meta(cvss(_vulID, _ac)).
-primitive(cvss(_vulID, _ac)).
+primitive(cvss(_vulID)).
 meta(attackGoal(_)).
 meta(advances(_, _)).
 
@@ -175,27 +175,27 @@ interaction_rule(
   (execCode(Host, root) :-
 	execCode(Host, _Perm2),
 	vulExists(Host, VulID, Software, localExploit, privEscalation),
-	cvss(VulID, AC)),
+	cvss(VulID)),
   rule_desc('local exploit',
-            cvss_ac(AC))).
+            'likely')).
 
 interaction_rule(
   (execCode(H, Perm) :-
 	vulExists(H, VulID, Software, remoteExploit, privEscalation),
-        cvss(VulID, AC),
+        cvss(VulID),
 	networkServiceInfo(H, Software, Protocol, Port, Perm),
 	netAccess(H, Protocol, Port)),
   rule_desc('remote exploit of a server program',
-            cvss_ac(AC))).
+            'likely')).
 
 interaction_rule(
   (execCode(H, Perm) :-
         vulExists(H, VulID, Software, remoteClient, privEscalation),
-	cvss(VulID, AC),
+	cvss(VulID),
 	hasAccount(Victim, H, Perm),
         accessMaliciousInput(H, Victim, Software)),
   rule_desc('remote exploit of a client program',
-            cvss_ac(AC))).
+            'likely')).
 
 interaction_rule(
   (execCode(H, root) :-
