@@ -1,9 +1,8 @@
 /* Attack goal */
 attackGoal(canSpoof(controlAction2)).
-%attackGoal(arpPoisoning(scadaWorkStation, mainRouter)).
 
 /* Attacker location */
-attackerLocated(scadaNet).
+attackerLocated(attackerNode).
 
 /* Access Control rules */
 hacl(_, _, _, _).
@@ -14,14 +13,13 @@ hacl(X,Y,_,_):-
 /* Control flow Scada-System to Master-PLC*/
 controlFlow(scadaWorkStation, mainPLC, controlAction2).
 protocol(controlAction2, plaintext).
-transportsFlow(mainRouter, controlAction2).
+transportsFlow(controlGateway, controlAction2).
 
 /* Scada network */
 inSubnet(attackerNode, scadaNet).
 inSubnet(scadaWorkStation, scadaNet).
-inSubnet(mainRouter, scadaNet).
-isGateway(mainRouter).
-
+inSubnet(controlGateway, scadaNet).
+isGateway(controlGateway).
 
 networkServiceInfo(scadaWorkStation,smbServer,smbProtocol,smbPort,root).
 vulExists(scadaWorkStation,cve2017_0144,smbServer).
