@@ -65,5 +65,5 @@ mkdir $output
 docker run -ti --name mulval -v "$(pwd)"/"$output":/input -d --rm wilbercui/mulval bash -c "tail -f /dev/null"
 docker cp $architecture mulval:/input
 docker cp $rules mulval:/input
-docker exec mulval bash -c "graph_gen.sh $architecture -v -p -r $rules"
+docker exec mulval bash -c "graph_gen.sh $architecture -v -p -r $rules --nometric"
 docker stop mulval

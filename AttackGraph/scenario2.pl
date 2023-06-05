@@ -22,7 +22,6 @@ transportsFlow(mainRouter, controlAction4).
 /* Scada network */
 inSubnet(attackerNode, scadaNet).
 inSubnet(scadaWorkStation, scadaNet).
-inSubnet(historian, scadaNet).
 inSubnet(mainRouter, scadaNet).
 isGateway(mainRouter).
 

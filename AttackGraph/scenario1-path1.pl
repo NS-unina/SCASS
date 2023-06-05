@@ -5,7 +5,6 @@ attackGoal(canTamper(controlAction2)).
 attackerLocated(attackerNode).
 
 /* Access Control rules */
-hacl(_, _, _, _).
 hacl(X,Y,_,_):-
 	inSubnet(X,S),
 	inSubnet(Y,S).
@@ -16,6 +15,7 @@ protocol(controlAction2, plaintext).
 transportsFlow(mainRouter, controlAction2).
 
 /* Scada network */
+inSubnet(attackerNode, scadaNet).
 inSubnet(scadaWorkStation, scadaNet).
 inSubnet(mainRouter, scadaNet).
 isGateway(mainRouter).

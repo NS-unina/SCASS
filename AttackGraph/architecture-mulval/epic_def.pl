@@ -1,5 +1,4 @@
 /* Attack goal */
-
 attackGoal(canTamper(controlAction12)).
 attackGoal(canSpoof(controlAction12)).
 attackGoal(canTamper(controlAction4)).

@@ -17,6 +17,7 @@ protocol(controlAction2, plaintext).
 transportsFlow(mainRouter, controlAction2).
 
 /* Scada network */
+inSubnet(attackerNode, scadaNet).
 inSubnet(scadaWorkStation, scadaNet).
 inSubnet(mainRouter, scadaNet).
 isGateway(mainRouter).
