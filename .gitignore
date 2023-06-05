@@ -1,4 +1,11 @@
-AttackGraph/output/
+AttackGraph/output*
+AttackGraph/architecture
+AttackGraph/scenario1-path1
+AttackGraph/scenario1-path2
+AttackGraph/scenario2
+AttackGraph/scenario3
+AttackGraph/scenario4
+
 test*
 !test_generic_ied.py
 !test_general_plc.py
