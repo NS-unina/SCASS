@@ -1,0 +1,392 @@
+services: 
+  g-ied1:
+    container_name: G-IED1
+    build: IED
+    image: ied
+    cap_add:
+      - NET_ADMIN
+    networks:
+      scass-generation:
+        ipv4_address: "10.0.1.82"
+    command: >-
+      sh -c "export TERM=xterm &&
+      ip route del default &&
+      ip route add default via 10.0.1.94 &&
+      ./run_script.sh"
+
+  s-ied1:
+    container_name: S-IED1
+    image: ied
+    cap_add:
+      - NET_ADMIN
+    networks:
+      scass-smarthome:
+        ipv4_address: "10.0.1.34"
+    command: >-
+      sh -c "export TERM=xterm &&
+      ip route del default &&
+      ip route add default via 10.0.1.46 &&
+      ./run_script.sh"
+  
+  s-ied2:
+    container_name: S-IED2
+    image: ied
+    cap_add:
+      - NET_ADMIN
+    networks:
+      scass-smarthome:
+        ipv4_address: "10.0.1.35"
+    command: >-
+      sh -c "export TERM=xterm &&
+      ip route del default &&
+      ip route add default via 10.0.1.46 &&
+      ./run_script.sh"
+
+  s-ied3:
+    container_name: S-IED3
+    image: ied
+    cap_add:
+      - NET_ADMIN
+    networks:
+      scass-smarthome:
+        ipv4_address: "10.0.1.36"
+    command: >-
+      sh -c "export TERM=xterm && 
+      ip route del default &&
+      ip route add default via 10.0.1.46 &&
+      ./run_script.sh"
+
+  s-ied4:
+    container_name: S-IED4
+    image: ied
+    cap_add:
+      - NET_ADMIN
+    networks:
+      scass-smarthome:
+        ipv4_address: "10.0.1.37"
+    command: >-
+      sh -c "export TERM=xterm &&
+      ip route del default &&
+      ip route add default via 10.0.1.46 &&
+      ./run_script.sh"
+  
+  t-ied1:
+    container_name: T-IED1
+    image: ied
+    cap_add:
+      - NET_ADMIN
+    networks:
+      scass-trasmission:
+        ipv4_address: "10.0.1.50"
+    command: >-
+      sh -c "export TERM=xterm &&
+      ip route del default &&
+      ip route add default via 10.0.1.62 &&
+      ./run_script.sh"
+    
+  t-ied2:
+    container_name: T-IED2
+    image: ied
+    cap_add:
+      - NET_ADMIN
+    networks:
+      scass-trasmission:
+        ipv4_address: "10.0.1.51"
+    command: >-
+      sh -c "export TERM=xterm &&
+      ip route del default &&
+      ip route add default via 10.0.1.62 &&
+      ./run_script.sh"
+
+  t-ied3:
+    container_name: T-IED3
+    image: ied
+    cap_add:
+      - NET_ADMIN
+    networks:
+      scass-trasmission:
+        ipv4_address: "10.0.1.52"
+    command: >-
+      sh -c "export TERM=xterm &&
+      ip route del default &&
+      ip route add default via 10.0.1.62 &&
+      ./run_script.sh"
+
+  m-ied1:
+    container_name: M-IED1
+    image: ied
+    cap_add:
+      - NET_ADMIN
+    networks:
+      scass-microgrid:
+        ipv4_address: "10.0.0.21"
+    command: >-
+      sh -c "ip route del default &&
+      ip route add default via 10.0.0.1 &&
+      ./run_script.sh"
+
+  m-ied2:
+    container_name: M-IED2
+    image: ied
+    cap_add:
+      - NET_ADMIN
+    networks:
+      scass-microgrid:
+        ipv4_address: "10.0.0.22"
+    command: >-
+      sh -c "ip route del default &&
+      ip route add default via 10.0.0.1 &&
+      ./run_script.sh"
+
+  master-plc:
+    container_name: Master-PLC
+    build: ./General-PLC
+    cap_add:
+      - NET_ADMIN
+    networks:
+      scass-plc:
+        ipv4_address: "10.0.1.66"
+    #command: "tail -f /dev/null"
+    command: >-
+      sh -c "ip route del default &&
+      ip route add 10.0.1.96/28 via 10.0.1.78 &&
+      ip route add default via 10.0.1.77 &&
+      ./run_script.sh"
+
+  fuxa-scada-system:
+    container_name: FUXA-SCADA-System
+    build:
+      context: ./FUXA-SCADA-System
+    cap_add:
+      - NET_ADMIN
+    networks:
+      scass-scada:
+        ipv4_address: "10.0.1.98"
+    command: >-
+      sh -c "ip route del default &&
+      ip route add default via 10.0.1.110 &&
+      npm start"
+
+  #scada-system:
+  #  container_name: SCADA-System
+  #  user: root
+  #  build:
+  #    context: ./SCADA-System
+  #  cap_add:
+  #    - NET_ADMIN
+  #  networks:
+  #    scass-scada:
+  #      ipv4_address: "10.0.1.98"
+  #  entrypoint: >-
+  #    sh -c "ip route del default &&
+  #    ip route add default via 10.0.1.110 &&
+  #    ./entrypoint.sh"
+    
+  general-man:
+    container_name: General-Man
+    build:
+      context: ./GeneralMan
+    cap_add:
+      - NET_ADMIN
+    environment:
+      DISPLAY: $DISPLAY
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ~/.Xauthority:/root/.Xauthority
+    network_mode: "service:fuxa-scada-system"
+    #networks:
+    #  scass-scada:
+    #    ipv4_address: "10.0.1.99"
+    command: "tail -f /dev/null"
+
+  internal-gateway:
+    container_name: I-Gateway
+    image: gateway 
+    build:
+      context: ./InternalGateway
+    cap_add:
+      - NET_ADMIN
+    networks:
+      scass-microgrid:
+        ipv4_address: "10.0.0.2"
+      scass-smarthome:
+        ipv4_address: "10.0.1.46"
+      scass-trasmission:
+        ipv4_address: "10.0.1.62"
+      scass-generation:
+        ipv4_address: "10.0.1.94"
+      scass-plc:
+        ipv4_address: "10.0.1.77"
+    command: >-
+      sh -c "iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE &&
+      iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE &&
+      iptables -t nat -A POSTROUTING -o eth2 -j MASQUERADE &&
+      iptables -t nat -A POSTROUTING -o eth3 -j MASQUERADE &&
+      iptables -t nat -A POSTROUTING -o eth4 -j MASQUERADE &&
+      iptables -A FORWARD -i eth0 -j ACCEPT &&
+      iptables -A FORWARD -i eth1 -j ACCEPT &&
+      iptables -A FORWARD -i eth2 -j ACCEPT &&
+      iptables -A FORWARD -i eth3 -j ACCEPT &&
+      iptables -A FORWARD -i eth4 -j ACCEPT &&
+      /usr/sbin/sshd -D"
+
+  control-gateway:
+    container_name: C-Gateway
+    image: gateway
+    build:
+      context: ./InternalGateway
+    cap_add:
+      - NET_ADMIN
+    networks:
+      scass-plc:
+        ipv4_address: "10.0.1.78"
+      scass-scada:
+        ipv4_address: "10.0.1.110"
+    command: >-
+        sh -c "iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE &&
+        iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE &&
+        iptables -A FORWARD -i eth0 -j ACCEPT &&
+        iptables -A FORWARD -i eth1 -j ACCEPT &&
+        tail -f /dev/null"
+
+  g-plc:
+    container_name: G-PLC
+    build:
+      context: ./CodedPLC/VirtualCodedPLC/G-PLC/
+    cap_add:
+      - NET_ADMIN
+    networks:
+      scass-generation:
+        ipv4_address: "10.0.1.93"
+    #command: "tail -f /dev/null"
+    command: >-
+      sh -c "ip route del default &&
+      ip route add default via 10.0.1.94 &&
+      ./run_script.sh"
+  
+  m-plc:
+    container_name: M-PLC
+    build:
+      context: ./CodedPLC/VirtualCodedPLC/M-PLC/
+    cap_add:
+      - NET_ADMIN
+    networks:
+      scass-microgrid:
+        ipv4_address: "10.0.0.192"
+    #command: "tail -f /dev/null"
+    command: >-
+      sh -c "ip route del default &&
+      ip route add default via 10.0.0.1 &&
+      ./run_script.sh"
+
+  t-plc:
+    container_name: T-PLC
+    build:
+      context: ./CodedPLC/VirtualCodedPLC/T-PLC
+    cap_add:
+      - NET_ADMIN
+    networks:
+      scass-trasmission:
+        ipv4_address: "10.0.1.61"
+    #command: "tail -f /dev/null"
+    command: >-
+      sh -c "ip route del default &&
+      ip route add default via 10.0.1.62 &&
+      ./run_script.sh"
+
+  s-plc:
+    container_name: S-PLC
+    build:
+      context: ./CodedPLC/VirtualCodedPLC/S-PLC/
+    cap_add:
+      - NET_ADMIN
+    networks:
+      scass-smarthome:
+        ipv4_address: "10.0.1.45"
+    #command: "tail -f /dev/null"
+    command: >-
+      sh -c "ip route del default &&
+      ip route add default via 10.0.1.46 &&
+      ./run_script.sh"
+
+  test-node:
+    container_name: Test-Node
+    build:
+      context: ./TestNode
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    network_mode: "service:s-plc"
+    command: >-
+      sh -c "tail -f /dev/null"
+#    networks:
+#      scass-plc:
+#        ipv4_address: "192.168.72.67"
+ 
+  attacker-node:
+    container_name: Attacker-Node
+    build:
+      context: ./AttackerNode-MultiStage
+    cap_add:
+      - NET_ADMIN
+    networks:
+      scass-scada:
+        ipv4_address: "10.0.1.100"
+    command: >-
+      sh -c "ip route del default &&
+      ip route add default via 10.0.1.110 && 
+      tail -f /dev/null"
+
+networks:     
+  scass-microgrid:
+    name: scass-microgrid
+    driver: macvlan
+    driver_opts:
+      parent: wlp0s20f3.2
+    ipam:
+      config:
+        - subnet: "10.0.0.0/24"
+  
+  scass-smarthome:
+    name: scass-smarthome
+    driver: macvlan
+    driver_opts:
+      parent: wlp0s20f3.3
+    ipam:
+      config:
+        - subnet: "10.0.1.32/28"
+
+  scass-trasmission:
+    name: scass-trasmission
+    driver: macvlan
+    driver_opts:
+      parent: wlp0s20f3.4
+    ipam:
+      config:
+        - subnet: "10.0.1.48/28"
+  
+  scass-scada:
+    name: scass-scada
+    driver: macvlan
+    driver_opts:
+      parent: wlp0s20f3.5
+    ipam:
+      config:
+        - subnet: "10.0.1.96/28"
+          
+  scass-generation:
+    name: scass-generation
+    driver: macvlan
+    driver_opts:
+      parent: wlp0s20f3.6
+    ipam:
+      config:
+        - subnet: "10.0.1.80/28"
+  
+  scass-plc:
+    name: scass-plc
+    driver: macvlan
+    driver_opts:
+      parent: wlp0s20f3.7
+    ipam:
+      config:
+        - subnet: "10.0.1.64/28"
