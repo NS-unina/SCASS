@@ -15,7 +15,9 @@ RUN apt update -y && apt dist-upgrade -y
 RUN apt update && apt install -y wget apache2 libtinfo5 python3 python3-pip iproute2 iptables
 
 # Install vulnerable bash version from wayback/snapshot archive
-RUN wget http://snapshot.debian.org/archive/debian/20130101T091755Z/pool/main/b/bash/bash_4.2%2Bdfsg-0.1_armhf.deb -O /tmp/bash_4.2+dfsg-0.1_amd64.deb && \
+#RUN wget http://snapshot.debian.org/archive/debian/20130101T091755Z/pool/main/b/bash/bash_4.2%2Bdfsg-0.1_armhf.deb -O /tmp/bash_4.2+dfsg-0.1_amd64.deb && \
+# dpkg -i /tmp/bash_4.2+dfsg-0.1_amd64.deb
+RUN wget http://snapshot.debian.org/archive/debian/20130101T091755Z/pool/main/b/bash/bash_4.2%2Bdfsg-0.1_amd64.deb -O /tmp/bash_4.2+dfsg-0.1_amd64.deb && \
  dpkg -i /tmp/bash_4.2+dfsg-0.1_amd64.deb
 
 

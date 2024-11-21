@@ -16,7 +16,7 @@ if __name__ == '__main__':
         result = client.read_coils(0, 10)
         
         try:
-            splc = ModbusTcpClient("192.168.72.45", 502)
+            splc = ModbusTcpClient("10.0.1.45", 502)
             splc.write_coil(0, result.bits[0])
             splc.write_coil(1, result.bits[1])
             splc.write_coil(2, result.bits[2])
@@ -26,7 +26,7 @@ if __name__ == '__main__':
             print("Connessione con splc fallita, riprovare")
         
         try:
-            tplc = ModbusTcpClient("192.168.72.61", 502)
+            tplc = ModbusTcpClient("10.0.1.61", 502)
             tplc.write_coil(0, result.bits[4])
             tplc.write_coil(1, result.bits[5])
             tplc.write_coil(2, result.bits[6])
@@ -35,7 +35,7 @@ if __name__ == '__main__':
             print("Connessione con tplc fallita, riprovare")
 
         try:
-            mplc = ModbusTcpClient("192.168.72.29", 502)
+            mplc = ModbusTcpClient("10.0.0.192", 502)
             mplc.write_coil(0, result.bits[7])
             mplc.write_coil(1, result.bits[8])
             mplc.close()
@@ -43,7 +43,7 @@ if __name__ == '__main__':
             print("Connessione con mplc fallita, riprovare")
 
         try:
-            gplc = ModbusTcpClient("192.168.72.93", 502)
+            gplc = ModbusTcpClient("10.0.1.93", 502)
             gplc.write_coil(0, result.bits[9])        
             gplc.close()
         except:
@@ -53,7 +53,7 @@ if __name__ == '__main__':
         time.sleep(1)
 
         try:
-            splc = ModbusTcpClient("192.168.72.45", 502)
+            splc = ModbusTcpClient("10.0.1.45", 502)
             readSPLC = splc.read_coils(8, 25)
             client.write_coil(22, readSPLC.bits[0])
             status["S-IED1"] = readSPLC.bits[0]
@@ -68,7 +68,7 @@ if __name__ == '__main__':
             print("Connessione con splc fallita, riprovare")
             
         try:
-            tplc = ModbusTcpClient("192.168.72.61", 502)
+            tplc = ModbusTcpClient("10.0.1.61", 502)
             readTPLC = tplc.read_coils(8, 17)
             client.write_coil(36, readTPLC.bits[0])
             status["T-IED1"] = readTPLC.bits[0]
@@ -81,7 +81,7 @@ if __name__ == '__main__':
             print("Connessione con tplc fallita, riprovare")
    
         try:
-            mplc = ModbusTcpClient("192.168.72.29", 502)
+            mplc = ModbusTcpClient("10.0.0.192", 502)
             readMPLC = mplc.read_coils(8, 9)
             client.write_coil(50, readMPLC.bits[0])
             status["M-IED1"] = readMPLC.bits[0]
@@ -92,7 +92,7 @@ if __name__ == '__main__':
             print("Connessione con mplc fallita, riprovare")
    
         try:
-            gplc = ModbusTcpClient("192.168.72.93", 502)
+            gplc = ModbusTcpClient("10.0.1.93", 502)
             readGPLC = gplc.read_coils(8, 1)
             client.write_coil(56, readGPLC.bits[0])
             status["G-IED1"] = readGPLC.bits[0]
