@@ -1,3 +1,5 @@
+*.old
+
 AttackGraph/output*
 AttackGraph/architecture
 AttackGraph/scenario1-path1
