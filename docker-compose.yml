@@ -241,7 +241,7 @@ services:
       context: ./TestNode
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    network_mode: "service:master-plc"
+    network_mode: "service:s-plc"
     command: >-
       sh -c "tail -f /dev/null"
 #    networks:
