@@ -241,7 +241,7 @@ services:
       context: ./TestNode
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    network_mode: "service:s-plc"
+    network_mode: "service:master-plc"
     command: >-
       sh -c "tail -f /dev/null"
 #    networks:
@@ -267,7 +267,7 @@ networks:
     name: scass-microgrid
     driver: macvlan
     driver_opts:
-      parent: wlp0s20f3.2
+      parent: eth0.2
     ipam:
       config:
         - subnet: "10.0.0.0/24"
@@ -276,7 +276,7 @@ networks:
     name: scass-smarthome
     driver: macvlan
     driver_opts:
-      parent: wlp0s20f3.3
+      parent: eth0.3
     ipam:
       config:
         - subnet: "10.0.1.32/28"
@@ -285,7 +285,7 @@ networks:
     name: scass-trasmission
     driver: macvlan
     driver_opts:
-      parent: wlp0s20f3.4
+      parent: eth0.4
     ipam:
       config:
         - subnet: "10.0.1.48/28"
@@ -294,7 +294,7 @@ networks:
     name: scass-scada
     driver: macvlan
     driver_opts:
-      parent: wlp0s20f3.5
+      parent: eth0.5
     ipam:
       config:
         - subnet: "10.0.1.96/28"
@@ -303,7 +303,7 @@ networks:
     name: scass-generation
     driver: macvlan
     driver_opts:
-      parent: wlp0s20f3.6
+      parent: eth0.6
     ipam:
       config:
         - subnet: "10.0.1.80/28"
@@ -312,7 +312,7 @@ networks:
     name: scass-plc
     driver: macvlan
     driver_opts:
-      parent: wlp0s20f3.7
+      parent: eth0.7
     ipam:
       config:
         - subnet: "10.0.1.64/28"
