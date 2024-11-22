@@ -36,7 +36,7 @@ The switch must be configured with the following VLAN table to ensure the archit
 
 To deploy the firmware to all PLCs, it is necessary to use ABB Automation Builder. The project file required for this process is located in the directory *CodedPLC*. Additionally, a video tutorial providing guidance on the deployment process can be found in the *video* directory.
 
-To deploy the virtual components, use the following commands based on the required setup:
+To deploy the virtual components, use the following commands on the RaspberryPi based on the required setup:
 
 1. **Standard Virtual Component Deployment**:
    ```bash
