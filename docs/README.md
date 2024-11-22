@@ -46,6 +46,9 @@ To deploy the virtual components, use the following commands on the RaspberryPi 
     ```bash
    docker-compose -f docker-compose-fuxa.yml up -d
    ```
+
+A deployment video is available in the video folder to provide additional guidance and support.
+
 ## Fully Virtual Deployment with Node-Red or FUXA
 This deployment scenario leverages the testbed in a fully virtualized environment
 
