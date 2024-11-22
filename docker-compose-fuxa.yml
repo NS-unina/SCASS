@@ -258,9 +258,6 @@ services:
     network_mode: "service:s-plc"
     command: >-
       sh -c "tail -f /dev/null"
-#    networks:
-#      scass-plc:
-#        ipv4_address: "192.168.72.67"
  
   attacker-node:
     container_name: Attacker-Node

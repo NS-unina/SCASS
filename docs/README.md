@@ -23,6 +23,18 @@ The overall configuration and connections are depicted in the electrical layout 
 
 ![Electrical Layout](https://github.com/NS-unina/SCASS/blob/master/docs/images/scass-circuit%20diagram.jpg "Figure: Electrical Layout")
 
+The switch must be configured with the following VLAN table to ensure the architecture functions correctly.
+
+| **VLAN Name**          | **Parent Interface** |
+|:----------------------:|:--------------------:|
+| scass-microgrid        | 2                    |
+| scass-smarthome        | 3                    |
+| scass-trasmission      | 4                    |
+| scass-scada            | 5                    |
+| scass-generation       | 6                    |
+| scass-plc              | 7                    |
+
+
 ## Fully Virtual Deployment with Node-Red or FUXA
 This deployment scenario leverages the testbed in a fully virtualized environment
 
@@ -41,3 +53,5 @@ You can deploy the virtual testbed with FUXA by running the following command:
 ```bash
 docker-compose -f docker-compose-full-virtual-fuxa up
 ```
+
+A deployment video for each configuration is available in the video folder to provide additional guidance and support.
