@@ -23,14 +23,21 @@ The overall configuration and connections are depicted in the electrical layout 
 
 ![Electrical Layout](https://github.com/NS-unina/SCASS/blob/master/docs/images/scass-circuit%20diagram.jpg "Figure: Electrical Layout")
 
-## Fully Virtual Deployment with Node-Red
-This deployment scenario leverages Node-RED in a fully virtualized environment
+## Fully Virtual Deployment with Node-Red or FUXA
+This deployment scenario leverages the testbed in a fully virtualized environment
 
 ### Software requirement 
 To run the virtual testbed, we rely exclusively on Docker Compose, making it essential to have Docker installed. Furthermore, the testbed utilizes the macvlan driver, which is only supported in the Docker engine. If necessary, the interface name specified in the Docker Compose configuration must be updated to match the system's network interface.
 
 To run the virtual testbed, you only need Docker Compose, so Docker must be installed. You can find the installation guide in the [Docker documentation](https://docs.docker.com/get-docker/). Moreover, the testbed uses the `macvlan` driver, which works only with Docker engine. If needed, update the interface name in the Docker Compose file to match your system.
 
-### Deploy 
+### **Running the Docker Compose**
+You can deploy the virtual testbed with Node-Red by running the following command:
+```bash
+docker-compose -f docker-compose-full-virtual up
+```
 
-
+You can deploy the virtual testbed with FUXA by running the following command:
+```bash
+docker-compose -f docker-compose-full-virtual-fuxa up
+```
