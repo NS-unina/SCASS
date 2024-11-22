@@ -34,7 +34,18 @@ The switch must be configured with the following VLAN table to ensure the archit
 | scass-generation       | 6                    |
 | scass-plc              | 7                    |
 
+To deploy the firmware to all PLCs, it is necessary to use ABB Automation Builder. The project file required for this process is located in the directory *CodedPLC*. Additionally, a video tutorial providing guidance on the deployment process can be found in the *video* directory.
 
+To deploy the virtual components, use the following commands based on the required setup:
+
+1. **Standard Virtual Component Deployment**:
+   ```bash
+   docker-compose up -d
+   ```
+2. **FUXA Virtual Component Deployment**
+    ```bash
+   docker-compose -f docker-compose-fuxa.yml up -d
+   ```
 ## Fully Virtual Deployment with Node-Red or FUXA
 This deployment scenario leverages the testbed in a fully virtualized environment
 
