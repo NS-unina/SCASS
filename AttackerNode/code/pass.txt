@@ -1,0 +1,4 @@
+password
+root
+admin
+1234
