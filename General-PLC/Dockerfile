@@ -33,6 +33,7 @@ RUN apt-get autoremove && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /v
 
 # Expose the port for usage with the docker -P switch
 WORKDIR /root
+RUN chmod u+s /usr/local/bin/python3
 RUN pip install -r requirements.txt
 CMD ./run_script.sh
 
