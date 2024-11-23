@@ -1,6 +1,6 @@
 # Multi Stage Attack scenario
 
-This page outlines an attack targeting the Internal Gateway, which is not directly accessible from the attacker machine. To overcome this limitation, the attacker leverage ShellShock vulnerability in the Genera-PLC to pivot and gain access to the target. Then, traffic is spoofed to manipulate M-IED1 device.
+This page outlines an attack targeting the Internal Gateway, which is not directly accessible from the attacker machine. To overcome this limitation, the attacker leverage ShellShock vulnerability in the Genera-PLC to pivot and gain access to the target. Then, traffic is spoofed to manipulate M-IED1 device. Notably, all files and tools required to execute this attack are already included within the provided Docker container.
 
 ---
 
