@@ -22,7 +22,11 @@ nc -lvnp 4444
 
 To progress further along the attack path, the attacker must perform pivoting to reach the I-Gateway. Indeed, this device is typically unreachable from the SCADA Network. However, by compromising the General-PLC, the attacker can bypass these restrictions and establish a connection to the I-Gateway using port forwarding techniques. It is worth noting that the shell upgrade has already been performed. For those interested in understanding how to execute the shell upgrade, detailed guidance can be found [this link](https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/).
 
-![Tool Download](https://github.com/NS-unina/SCASS/blob/master/AttackerNode/images/download.png "Figure: Tool Download")
+![Webserver](https://github.com/NS-unina/SCASS/blob/master/AttackerNode/images/webserver.png "Figure: Webserver")
+
+![Tool Download](https://github.com/NS-unina/SCASS/blob/master/AttackerNode/images/download-tool.png "Figure: Tool Download")
+
+![ Port Forwarding](https://github.com/NS-unina/SCASS/blob/master/AttackerNode/images/port-forwarding.png "Figure: Port Forwarding")
 
 Then, the attacker is able to brute force the SSH service exposed by the gateway and take complete control of the endpoint. In fact, this service was exploited by finding the default credential. Therefore, this credential enables us also to gain root privilege.
 
