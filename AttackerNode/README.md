@@ -30,7 +30,7 @@ To progress further along the attack path, the attacker must perform pivoting to
 
 Then, the attacker is able to brute force the SSH service exposed by the gateway and take complete control of the endpoint. In fact, this service was exploited by finding the default credential. Therefore, this credential enables us also to gain root privilege.
 
-![SSH Bruteforce](https://github.com/NS-unina/SCASS/blob/master/AttackerNode/images/bruteforce.png "Figure: SSH Bruteforce")
+![SSH Bruteforce](https://github.com/NS-unina/SCASS/blob/master/AttackerNode/images/bruteforce-ssh.png "Figure: SSH Bruteforce")
 
 Then, the attacker brute-forces the SSH service exposed by the I-Gateway. This attack exploits the discovery of default credentials configured for the SSH authentication mechanism. Moreover, the use of these credentials grants root privileges.
 
