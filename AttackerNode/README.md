@@ -20,7 +20,7 @@ nc -lvnp 4444
 
 ![Reverse Shell](https://github.com/NS-unina/SCASS/blob/master/AttackerNode/images/reverse.png "Figure: Reverse Shell")
 
-To progress further along the attack path, the attacker must perform pivoting to reach the I-Gateway. Indeed, this device is typically unreachable from the SCADA Network. However, by compromising the General-PLC, the attacker can bypass these restrictions and establish a connection to the I-Gateway using port forwarding techniques.
+To progress further along the attack path, the attacker must perform pivoting to reach the I-Gateway. Indeed, this device is typically unreachable from the SCADA Network. However, by compromising the General-PLC, the attacker can bypass these restrictions and establish a connection to the I-Gateway using port forwarding techniques. It is worth noting that the shell upgrade has already been performed. For those interested in understanding how to execute the shell upgrade, detailed guidance can be found [this link](https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/).
 
 ![Tool Download](https://github.com/NS-unina/SCASS/blob/master/AttackerNode/images/download.png "Figure: Tool Download")
 
