@@ -74,6 +74,6 @@ python3 coilModificationStealth.py #I-Gateway
 
 Indeed, from the HMI interface, we can observe that MIED1 appears to be active. However, by using the TestNode, which is connected to the same network interface as the MPLC, it is possible to confirm that the displayed MIED1 is close.
 
-![Shellshock Exploit](https://github.com/NS-unina/SCASS/blob/master/AttackerNode/images/HMI.png "Figure: Shellshock Exploit")
+![HMI](https://github.com/NS-unina/SCASS/blob/master/AttackerNode/images/HMI.png "Figure: HMI")
 
-![Shellshock Exploit](https://github.com/NS-unina/SCASS/blob/master/AttackerNode/images/coils.png "Figure: Shellshock Exploit")
+![Coils](https://github.com/NS-unina/SCASS/blob/master/AttackerNode/images/coils.png "Figure: Coils")
