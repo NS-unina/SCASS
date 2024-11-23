@@ -56,6 +56,15 @@ ssh -P 2222 admin@10.0.1.66
 
 Finally, the attacker alters the communication passing through the I-Gateway in order to manipulate the visualization of the M-IED1 status.
 
+- Copy the modification script to the I-Gateway:
+```bash
+scp -P 2222 coilModificationStealth.py admin@10.0.1.66:/home/admin/ #Attacker Node
+```
+- Execute the script on the I-Gateway:
+```bash
+python3 coilModificationStealth.py #I-Gateway
+```
+
 ![Packet Modification](https://github.com/NS-unina/SCASS/blob/master/AttackerNode/images/packetModification.png "Figure: Packet Modification")
 
 Indeed, from the HMI interface, we can observe that MIED1 appears to be active. However, by using the TestNode, which is connected to the same network interface as the MPLC, it is possible to confirm that the displayed MIED1 is close.
