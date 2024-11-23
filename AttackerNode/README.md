@@ -16,6 +16,6 @@ Then, the attacker brute-forces the SSH service exposed by the I-Gateway. This a
 
 Finally, the attacker alter the communication passing through the I-Gateway tin oder to manipulate the visualization of the M-IED1 status.
 
-![checkCoil](https://github.com/NS-unina/SCASS/tree/master/AttackerNode/images/coils.png "Figure: checkCoil")
+![Shellshock Exploit](https://github.com/NS-unina/SCASS/blob/master/AttackerNode/images/coils.png "Figure: Shellshock Exploit")
 
 Indeed, from the HMI interface, we can observe that MIED1 appears to be active. However, by using the TestNode, which is connected to the same network interface as the MPLC, it is possible to confirm that the displayed MIED1 is close.
