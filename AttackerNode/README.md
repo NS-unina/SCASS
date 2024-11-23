@@ -2,7 +2,7 @@
 
 The first stage of the attack path exploits the Shellshock vulnerability in the General-PLC, specifically targeting the CGI-Bin module of the Apache web server. This vulnerability enables attackers to inject and execute malicious commands through specially crafted HTTP requests since the CGI (Common Gateway Interface) scripts on Apache invoke the Bash shell for processing the HTTP response.
 
-![Shellshock Exploit](https://github.com/NS-unina/SCASS/blob/master/AttackerNode/images/shellshock-exploit.png "Figure: Shellshock Exploit")
+![Shellshock Exploit](https://github.com/NS-unina/SCASS/blob/master/AttackerNode/images/shellshock.png "Figure: Shellshock Exploit")
 
 To progress further along the attack path, the attacker must perform pivoting to reach the I-Gateway. Indeed, this device is typically unreachable from the SCADA Network. However, by compromising the General-PLC, the attacker can bypass these restrictions and establish a connection to the I-Gateway using port forwarding techniques.
 
