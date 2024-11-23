@@ -6,11 +6,11 @@ All attack paths for exploiting vulnerabilities in SCASS have already been compi
     ```
 
     ```bash
-   make scenario1
-   ```
+    make scenario1
+    ```
 
     ```bash
-   make scenario2
-   ```
+    make scenario2
+    ```
 
 Notably, this utility requires Docker to work.
