@@ -22,9 +22,11 @@ nc -lvnp 4444
 
 To progress further along the attack path, the attacker must perform pivoting to reach the I-Gateway. Indeed, this device is typically unreachable from the SCADA Network. However, by compromising the General-PLC, the attacker can bypass these restrictions and establish a connection to the I-Gateway using port forwarding techniques.
 
+![Tool Download](https://github.com/NS-unina/SCASS/blob/master/AttackerNode/images/download.png "Figure: Tool Download")
+
 Then, the attacker is able to brute force the SSH service exposed by the gateway and take complete control of the endpoint. In fact, this service was exploited by finding the default credential. Therefore, this credential enables us also to gain root privilege.
 
-![SSH Access](https://github.com/NS-unina/SCASS/blob/master/AttackerNode/images/ssh.png "Figure: SSH Access")
+![SSH Bruteforce](https://github.com/NS-unina/SCASS/blob/master/AttackerNode/images/bruteforce.png "Figure: SSH Bruteforce")
 
 Then, the attacker brute-forces the SSH service exposed by the I-Gateway. This attack exploits the discovery of default credentials configured for the SSH authentication mechanism. Moreover, the use of these credentials grants root privileges.
 
