@@ -2,6 +2,11 @@
 
 This page outlines an attack targeting the Internal Gateway, which is not directly accessible from the attacker machine. To overcome this limitation, the attacker leverage ShellShock vulnerability in the Genera-PLC to pivot and gain access to the target. Then, traffic is spoofed to manipulate M-IED1 device. Notably, all files and tools required to execute this attack are already included within the provided Docker container.
 
+- Use the attacker node:
+```bash
+docker exec -ti Attacker-Node bash
+```
+
 ---
 
 The first stage of the attack path exploits the Shellshock vulnerability in the General-PLC, specifically targeting the CGI-Bin module of the Apache web server. This vulnerability enables attackers to inject and execute malicious commands through specially crafted HTTP requests since the CGI (Common Gateway Interface) scripts on Apache invoke the Bash shell for processing the HTTP response. 
