@@ -30,7 +30,7 @@ Then, the attacker is able to brute force the SSH service exposed by the gateway
 
 Then, the attacker brute-forces the SSH service exposed by the I-Gateway. This attack exploits the discovery of default credentials configured for the SSH authentication mechanism. Moreover, the use of these credentials grants root privileges.
 
-![SSH Access](https://github.com/NS-unina/SCASS/tree/master/AttackerNode/images/sshAccess.png "Figure: SSH Access")
+![SSH Access](https://github.com/NS-unina/SCASS/blob/master/AttackerNode/images/ssh-mod.png "Figure: SSH Access")
 
 Finally, the attacker alters the communication passing through the I-Gateway in order to manipulate the visualization of the M-IED1 status.
 
