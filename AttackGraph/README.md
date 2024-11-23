@@ -13,4 +13,4 @@ All attack paths for exploiting vulnerabilities in SCASS have already been compi
    make scenario2
    ```
 
-Notably, to work this utitulity requires docker
+Notably, this utility requires Docker to work.
