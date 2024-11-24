@@ -80,7 +80,7 @@ Indeed, from the HMI interface, we can observe that MIED1 appears to be active. 
 ```bash
 docker exec -ti Test-Node bash
 ```
-- Check coils status
+- Check coils status:
 ```bash
 from pymodbus.client import ModbusTcpClient  # pylint: disable-msg=E0611
 client = ModbusTcpClient('127.0.0.1', 502)
