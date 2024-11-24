@@ -2,7 +2,7 @@
 attackGoal(lossVisibility(feedbackAction3)).
 
 /* Attacker location */
-attackerLocated(scassNet).
+attackerLocated(microgrid).
 hacl(_,_,_,_).
 hacl(X,Y,_,_):-
 	inSubnet(X,S),
@@ -10,25 +10,25 @@ hacl(X,Y,_,_):-
 
 /* Control Logic */
 /* Control flow Master-PLC to S-PLC*/
-controlFlow(terminal, monitorControl, controlAction2).
-feedbackFlow(monitorControl, terminal, feedbackAction2).
+controlFlow(terminal, mplc, controlAction2).
+feedbackFlow(mplc, terminal, feedbackAction2).
 protocol(controlAction2, plaintext).
 protocol(feedbackAction2, plaintext).
 /* Control flow Scada-System to Master-PLC*/
-controlFlow(monitorControl, gIed2, controlAction3).
-feedbackFlow(gIed2, monitorControl, feedbackAction3).
+controlFlow(mplc, mied1, controlAction3).
+feedbackFlow(mied1, mplc, feedbackAction3).
 protocol(feedbackAction3, plaintext).
 protocol(feedbackAction3, unauthenticated).
 
-inSubnet(terminal, scassNet).
+inSubnet(terminal, microgrid).
 l2Discovery(terminal, arp).
-inSubnet(monitorControl, scassNet).
-l2Discovery(monitorControl, arp).
-inSubnet(gIed1, scassNet).
-l2Discovery(gIed1, arp).
-inSubnet(gIed2, scassNet).
-l2Discovery(gIed2, arp).
-inSubnet(vulnHost, scassNet).
+inSubnet(mplc, microgrid).
+l2Discovery(mplc, arp).
+inSubnet(mied2, microgrid).
+l2Discovery(mied2, arp).
+inSubnet(mied1, microgrid).
+l2Discovery(mied1, arp).
+inSubnet(vulnHost, microgrid).
 
 /* Vulnerabilities */
 vulProperty(cve_1999_0667, remoteExploit, privEscalation).
