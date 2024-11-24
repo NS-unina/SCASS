@@ -76,7 +76,7 @@ Indeed, from the HMI interface, we can observe that MIED1 appears to be active. 
 
 ![HMI](https://github.com/NS-unina/SCASS/blob/master/AttackerNode/images/HMI.png "Figure: HMI")
 
-- Use the attacker node:
+- Use the Test-Node:
 ```bash
 docker exec -ti Test-Node bash
 ```
