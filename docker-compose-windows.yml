@@ -244,6 +244,16 @@ services:
       ip route add default via 10.0.1.110 && 
       tail -f /dev/null"
 
+  attacker-arp-node:
+    image: ubuntu
+    cap_add:
+      - NET_ADMIN
+    networks:
+      scass-microgrid:
+        ipv4_address: "10.0.0.131"
+    command: >-
+      sh -c "tail -f /dev/null"
+
 networks:     
   scass-microgrid:
     name: scass-microgrid

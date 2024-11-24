@@ -76,4 +76,15 @@ Indeed, from the HMI interface, we can observe that MIED1 appears to be active. 
 
 ![HMI](https://github.com/NS-unina/SCASS/blob/master/AttackerNode/images/HMI.png "Figure: HMI")
 
+- Use the attacker node:
+```bash
+docker exec -ti Test-Node bash
+```
+- Check coils status
+```bash
+from pymodbus.client import ModbusTcpClient  # pylint: disable-msg=E0611
+client = ModbusTcpClient('127.0.0.1', 502)
+print(readSPLC = splc.read_coils(8, 25).bits)
+```
+
 ![Coils](https://github.com/NS-unina/SCASS/blob/master/AttackerNode/images/coils.png "Figure: Coils")
